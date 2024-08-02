@@ -10,5 +10,5 @@
 import Home from './components/Home.vue';
 import HelloWorld from './components/Home.vue';
 
-  //
+//
 </script>

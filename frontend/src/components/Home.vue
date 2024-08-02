@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <v-container fluid>
+    <v-container>
       <v-row>
-        <v-col cols="2">
+        <v-col cols="5">
           <v-navigation-drawer app v-model="drawer" :rail="rail" permanent @click="rail = false">
             <v-list-item title="Unify Data" nav class="custom-list-item">
               <template v-slot:append>
@@ -12,17 +12,58 @@
             <v-divider></v-divider>
             <div class="custom-header ml-12">Dashboard</div>
             <v-list density="compact" nav>
-              <v-list-item prepend-icon="mdi-home-city" title="Dashboard" value="home" class="custom-list-item"></v-list-item>
-              <v-list-item prepend-icon="mdi-account" title="Pipelines" value="account" class="custom-list-item"></v-list-item>
-              <v-list-item prepend-icon="mdi-account" title="Bulk Pipelines" value="account" class="custom-list-item"></v-list-item>
+              <v-list-item
+                prepend-icon="mdi-home-city"
+                title="Dashboard"
+                value="home"
+                class="custom-list-item"
+              ></v-list-item>
+              <v-list-item
+                prepend-icon="mdi-account"
+                title="Pipelines"
+                value="account"
+                class="custom-list-item"
+              ></v-list-item>
+              <v-list-item
+                prepend-icon="mdi-account"
+                title="Bulk Pipelines"
+                value="account"
+                class="custom-list-item"
+              ></v-list-item>
               <div class="custom-header ml-12">Editor</div>
-              <v-list-item prepend-icon="mdi-account" title="Source" value="account" class="custom-list-item"></v-list-item>
-              <v-list-item prepend-icon="mdi-account" title="Destination" value="account" class="custom-list-item"></v-list-item>
-              <v-list-item prepend-icon="mdi-account" title="Transformation" value="account" class="custom-list-item"></v-list-item>
-              <v-list-item prepend-icon="mdi-account" title="Build AI Connections" value="account" class="custom-list-item"></v-list-item>
-              <v-list-item prepend-icon="mdi-account-group-outline" title="Workspaces" value="users" class="custom-list-item"></v-list-item>
+              <v-list-item
+                prepend-icon="mdi-account"
+                title="Source"
+                value="account"
+                class="custom-list-item"
+              ></v-list-item>
+              <v-list-item
+                prepend-icon="mdi-account"
+                title="Destination"
+                value="account"
+                class="custom-list-item"
+              ></v-list-item>
+              <v-list-item
+                prepend-icon="mdi-account"
+                title="Transformation"
+                value="account"
+                class="custom-list-item"
+              ></v-list-item>
+              <v-list-item
+                prepend-icon="mdi-account"
+                title="Build AI Connections"
+                value="AI"
+                class="custom-list-item"
+                @click="openDailog"
+              ></v-list-item>
+              <workspaceShow />
             </v-list>
-            <v-list-item prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg" title="John Leider" nav class="custom-list-item">
+            <v-list-item
+              prepend-avatar="https://randomuser.me/api/portraits/men/85.jpg"
+              title="John Leider"
+              nav
+              class="custom-list-item"
+            >
             </v-list-item>
           </v-navigation-drawer>
         </v-col>
@@ -38,7 +79,7 @@
           <v-main>
             <v-container class="custom-container">
               <!-- Your main content -->
-              <router-view></router-view>
+             <sidebarSetting />
             </v-container>
           </v-main>
         </v-col>
@@ -47,15 +88,13 @@
   </v-app>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      drawer: true,
-      rail: true,
-    };
-  },
-};
+<script setup>
+import { ref } from 'vue';
+import sidebarSetting from './SidebarSettings.vue'
+import workspaceShow from './WorkspaceShow.vue';
+
+const drawer = ref(true);
+const rail = ref(true);
 </script>
 
 <style scoped>
@@ -67,7 +106,7 @@ export default {
 
 .custom-list-item:hover {
   background-color: #e0e0e0;
-  color: #023C83;
+  color: #023c83;
   font-size: 20px;
 }
 
