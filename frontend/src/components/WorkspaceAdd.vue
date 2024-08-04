@@ -35,19 +35,35 @@
 <script setup>
 import { defineProps, defineEmits, ref, watch } from 'vue';
 
+// Define a reactive variable for the input value
 const inputValue = ref('');
+
+// Define a reactive variable to control the save button's enabled state
 const isSaveButtonEnabled = ref(false);
 
+// Define emit for closeDialog event
 const emit = defineEmits(['closeDailog']);
 
+// Define props for the component
 const props = defineProps({
   opendailoge: Boolean,
 });
 
+/**
+ * Function to emit the closeDialog event
+ 
+ * @param {none}
+ * @returns {void}
+ */
 function closeDailog() {
   emit('closeDailog');
 }
 
+/**
+ * Watcher to enable the save button if the input value is not empty
+ * @param {string} newValue - The new value of inputValue
+ * @returns {void}
+ */
 watch(inputValue, (newValue) => {
   isSaveButtonEnabled.value = newValue.trim().length > 0;
 });

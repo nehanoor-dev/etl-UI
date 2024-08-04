@@ -71,22 +71,28 @@
 import { ref, computed } from 'vue';
 import workspaceAdd from './WorkspaceAdd.vue';
 
-// State management
+// Define reactive variables for the menu, search query, and dialog state
 const menu = ref(false);
 const searchQuery = ref('');
 const dailog = ref(false);
 
-// List of all workspaces
+// Define an reactive array of all items
 const allItems = ref([
   { title: 'Enlatics' },
   { title: 'Programmers Force' },
   { title: 'Enlatics Lite' },
   { title: 'Know your product' },
 ]);
-// Selected workspace
+
+// Reactive variable for the selected item, initially set to the first item
 const selectedItem = ref(allItems.value[0]);
 
-// Computed property to filter items based on the search query
+/**
+ * Computed property to filter items based on the search query and exclude the selected item
+ 
+ * @param {none}
+ * @returns {Array} - Returns an array of filtered items
+ */
 const filteredItems = computed(() => {
   return (
     allItems.value
@@ -96,7 +102,12 @@ const filteredItems = computed(() => {
   );
 });
 
-// Method to get initials from a title
+/**
+ * Function to get the initials of a title
+ 
+ * @param {string} title - The title to get initials from
+ * @returns {string} - Returns the initials of the title
+ */
 function getInitials(title) {
   return title
     .split(' ')
@@ -104,15 +115,32 @@ function getInitials(title) {
     .join('');
 }
 
-// Method to select an item
+/**
+ * Function to set the selected item
+ 
+ * @param {object} item - The item to be selected
+ * @returns {void}
+ */
 function selectItem(item) {
   selectedItem.value = item;
 }
 
+/**
+ * Function to open the dialog
+ 
+ * @param {none}
+ * @returns {void}
+ */
 function Addworkspace() {
   dailog.value = true;
 }
 
+/**
+ * Function to close the dialog
+ 
+ * @param {none}
+ * @returns {void}
+ */
 function closeDailog() {
   dailog.value = false;
 }
