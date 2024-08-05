@@ -7,6 +7,27 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+<<<<<<< HEAD
     Home: typeof import('./src/components/home/Home.vue')['default']
+=======
+    BuildAIConnections: typeof import('./src/components/SubComponents/BuildAIConnections.vue')['default']
+    Dashboard: typeof import('./src/components/SubComponents/Dashboard.vue')['default']
+    Destination: typeof import('./src/components/SubComponents/Destination.vue')['default']
+    Dummy: typeof import('./src/components/SubComponents/dummy.vue')['default']
+    FileInstructions: typeof import('./src/components/SubComponents/FileInstructions.vue')['default']
+    Help: typeof import('./src/components/SubComponents/Help.vue')['default']
+    Home: typeof import('./src/components/Home.vue')['default']
+    NavBar: typeof import('./src/components/NavBar.vue')['default']
+    NavigationDrower: typeof import('./src/components/NavigationDrower.vue')['default']
+    Pipelines: typeof import('./src/components/SubComponents/pipelines.vue')['default']
+    Profile: typeof import('./src/components/Profile.vue')['default']
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
+    Settings: typeof import('./src/components/SubComponents/Settings.vue')['default']
+    SideBar: typeof import('./src/components/SideBar.vue')['default']
+    Source: typeof import('./src/components/SubComponents/Source.vue')['default']
+    Transformation: typeof import('./src/components/SubComponents/Transformation.vue')['default']
+    Workspace: typeof import('./src/components/SubComponents/Workspace.vue')['default']
+>>>>>>> d8b00a5a6c90592a5dc5b9f4994cc34b2250b019
   }
 }

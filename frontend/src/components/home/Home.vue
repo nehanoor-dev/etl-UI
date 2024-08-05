@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD:frontend/src/components/home/Home.vue
   <!-- <v-app> -->
     <v-container class="mt-n16">
       <v-row>
@@ -60,45 +61,56 @@ export default {
       drawer: true,
       rail: true,
     };
+=======
+    <v-app > 
+      <v-main>
+        <v-container fluid>
+          <v-row>
+            
+              <Sidbar />
+            
+            <v-col cols="12" style="height: 10vh;">
+              <NavBar />
+
+              
+            </v-col>
+            <v-col cols="12">
+              
+            </v-col>
+            
+          </v-row>
+          
+        </v-container>
+        
+      </v-main>
+
+     
+    </v-app>
+
+    
+  </template>
+
+
+<script>
+import NavBar from './NavBar.vue';
+import Sidbar from './SideBar.vue';
+
+export default {
+  components: {
+    NavBar,
+    Sidbar,
+>>>>>>> d8b00a5a6c90592a5dc5b9f4994cc34b2250b019:frontend/src/components/Home.vue
   },
 };
 </script>
+  
 
-<style scoped>
-.custom-list-item {
-  background-color: #f0f0f0;
-  color: #333;
-  transition: background-color 0.3s ease;
+<style  scoped>
+.v-container {
+  height: 100vh;
 }
 
-.custom-list-item:hover {
-  background-color: #e0e0e0;
-  color: #023C83;
-  font-size: 20px;
-}
-
-.custom-btn {
-  color: black;
-}
-
-.custom-app-bar {
-  background-color: #3f51b5;
-  color: white;
-}
-
-.custom-toolbar-title {
-  font-weight: bold;
-  font-size: 1.5rem;
-}
-
-.custom-header {
-  font-weight: bold;
-  font-size: 1.2rem;
-  padding: 10px;
-  color: #555;
-}
-
-.v-list-item {
-  background-color: white;
+.v-col {
+  padding: 0;
 }
 </style>
