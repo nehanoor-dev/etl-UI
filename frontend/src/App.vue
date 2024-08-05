@@ -1,6 +1,7 @@
 <template>
   <v-app theme="light" style="background-color: white; width: 100%; height: 1000px;"> 
     <v-main>
+<<<<<<< HEAD
       <v-container class="auto-height-container">
         <v-row>
           
@@ -19,6 +20,11 @@
         
       </v-container>
       
+=======
+      <Home />
+       <!-- <DestinationScreen></DestinationScreen> -->
+        <!-- <maindest></maindest> -->
+>>>>>>> 6b028a94a581b5f3dc50f8b5087dc9b484d6c640
     </v-main>
 
    
@@ -27,6 +33,14 @@
   
 </template>
 
+<<<<<<< HEAD
+=======
+<script setup>
+import Home from './components/home/Home.vue';
+// import DestinationScreen from './components/destination/DestinationScreen.vue' 
+import maindest from './components/destination/mine/maindest.vue'
+
+>>>>>>> 6b028a94a581b5f3dc50f8b5087dc9b484d6c640
 
 <script>
 import NavBar from './components/NavBar.vue';

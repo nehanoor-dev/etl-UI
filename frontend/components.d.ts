@@ -7,6 +7,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+<<<<<<< HEAD
     BuildAIConnections: typeof import('./src/components/SubComponents/BuildAIConnections.vue')['default']
     Dashboard: typeof import('./src/components/SubComponents/Dashboard.vue')['default']
     Destination: typeof import('./src/components/SubComponents/Destination.vue')['default']
@@ -25,5 +26,8 @@ declare module 'vue' {
     Source: typeof import('./src/components/SubComponents/Source.vue')['default']
     Transformation: typeof import('./src/components/SubComponents/Transformation.vue')['default']
     Workspace: typeof import('./src/components/SubComponents/Workspace.vue')['default']
+=======
+    Home: typeof import('./src/components/home/Home.vue')['default']
+>>>>>>> 6b028a94a581b5f3dc50f8b5087dc9b484d6c640
   }
 }
