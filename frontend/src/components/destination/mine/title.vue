@@ -23,11 +23,12 @@
    -->
 
    <template>
-    <v-container>
-      <v-typo variant="text-h1" class="text--black">
+      <!-- <v-typo variant="text-h1" class="heading text--black">
         {{ heading }}
+      </v-typo> -->
+      <v-typo class="" style="font-size: 2em;">
+      {{heading}}
       </v-typo>
-    </v-container>
   </template>
   
   <script>
@@ -40,8 +41,6 @@
   </script>
   
   <style scoped>
-  .v-container {
-    text-align: center;
-  }
+
   </style>
   
