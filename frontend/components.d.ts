@@ -8,6 +8,8 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
 <<<<<<< HEAD
+    Home: typeof import('./src/components/home/Home.vue')['default']
+=======
     BuildAIConnections: typeof import('./src/components/SubComponents/BuildAIConnections.vue')['default']
     Dashboard: typeof import('./src/components/SubComponents/Dashboard.vue')['default']
     Destination: typeof import('./src/components/SubComponents/Destination.vue')['default']
@@ -26,8 +28,6 @@ declare module 'vue' {
     Source: typeof import('./src/components/SubComponents/Source.vue')['default']
     Transformation: typeof import('./src/components/SubComponents/Transformation.vue')['default']
     Workspace: typeof import('./src/components/SubComponents/Workspace.vue')['default']
-=======
-    Home: typeof import('./src/components/home/Home.vue')['default']
->>>>>>> 6b028a94a581b5f3dc50f8b5087dc9b484d6c640
+>>>>>>> d8b00a5a6c90592a5dc5b9f4994cc34b2250b019
   }
 }

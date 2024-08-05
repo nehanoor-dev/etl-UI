@@ -13,8 +13,8 @@
       </v-btn>
     </template>
     <v-list>
-      <v-list-item v-for="(item, i) in items" :key="i">
-        <v-list-item-title>{{ item.title }}</v-list-item-title>
+      <v-list-item class="dropItems" v-for="(item, i) in items" :key="i">
+        <v-list-item-title >{{ item.title }}</v-list-item-title>
       </v-list-item>
     </v-list>
   </v-menu>
@@ -46,6 +46,9 @@ export default {
   /* height: 56px; */
   margin-bottom: 22px;
   text-transform: capitalize;
+}
+.dropItems:hover {
+  background-color: hsl(210, 23%, 90%);
 }
 
 </style>

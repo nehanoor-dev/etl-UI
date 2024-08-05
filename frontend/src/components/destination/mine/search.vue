@@ -52,6 +52,7 @@ export default {
 
 <style scoped>
 .search-input {
+  margin-top: 0;
   border-top-left-radius: 25px !important;
   border-bottom-left-radius: 25px !important;
   /* height: 56px; Adjust height to match the filter button */
