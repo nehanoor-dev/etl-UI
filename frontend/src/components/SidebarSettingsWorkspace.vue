@@ -1,4 +1,5 @@
 <template>
+  <div>
   <div class="text-h5 text-bold">General WorkSpace Setting</div>
    <v-form @submit.prevent="updateSecurity" class="mt-7">
     <span>Workspace Name</span>
@@ -12,6 +13,8 @@
 
     <v-btn :disabled="!isButtonDisabled" type="submit" color="primary" class="float-right">Save</v-btn>
   </v-form>
+</div>
+  <v-divider></v-divider>
 </template>
 
 <script setup>

@@ -79,7 +79,8 @@
           <v-main>
             <v-container class="custom-container">
               <!-- Your main content -->
-             <sidebarSetting />
+             <!-- <sidebarSetting /> -->
+              <fileInstructions />
             </v-container>
           </v-main>
         </v-col>
@@ -90,7 +91,9 @@
 
 <script setup>
 import { ref } from 'vue';
-import sidebarSetting from './SidebarSettings.vue'
+import fileInstructions from './FileInstructions.vue'
+// import sidebarSetting from './SidebarSettings.vue'
+
 import workspaceShow from './WorkspaceShow.vue';
 
 const drawer = ref(true);
