@@ -1,46 +1,28 @@
-<!-- <template>
-    <v-container>
-      <v-typo variant="h1">
-        {{ title }}
-      </v-typo>
-    </v-container>
-  </template>
-  
-  <script>
-  export default {
-    name: 'Title',
-    data: () => ({
-      title: 'Select Destination',
-    }),
-  }
-  </script>
-  
-  <style scoped>
-  .v-container {
-    text-align: center;
-  }
-  </style>
-   -->
+<template>
+  <v-container>
+    <v-row justify="center">
+      <v-col cols="12" class="text-center">
+        <p class="heading">{{ heading }}</p>
+      </v-col>
+    </v-row>
+  </v-container>
+</template>
 
-   <template>
-      <!-- <v-typo variant="text-h1" class="heading text--black">
-        {{ heading }}
-      </v-typo> -->
-      <v-typo class="" style="font-size: 2em;">
-      {{heading}}
-      </v-typo>
-  </template>
-  
-  <script>
-  export default {    
-    name: 'Title',
-    data: () => ({
-      heading: 'Select Destination',
-    })
-  }
-  </script>
-  
-  <style scoped>
+<script>
+export default {
+  name: 'Title',
+  data: () => ({
+    heading: 'Select Destination',
+  }),
+}
+</script>
 
-  </style>
-  
+<style scoped>
+.heading {
+  font-size: 24px; /* Adjust the font size as needed */
+  color: black; /* Adjust the color as needed */
+}
+.text-center {
+  text-align: center;
+}
+</style>

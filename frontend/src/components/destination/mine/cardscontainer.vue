@@ -2,16 +2,25 @@
 
     <v-container class="cardsDiv" >
       <v-row rows="2" align="start">
-        <v-col cols="9" md="2">
+        <v-col cols="3" md="2">
             <Card/>
             <Card/>
+          
+        </v-col>
+        <v-col cols="3" md="2">
             <Card/>
-          <Card/><Card/>
-          <Card/><Card/>
-          <Card/><Card/>
-          <Card/><Card/>
-          <Card/><Card/>
-          <Card/>
+            <Card/>
+          
+        </v-col>
+        <v-col cols="3" md="2">
+            <Card/>
+            <Card/>
+          
+        </v-col>
+        <v-col cols="3" md="2">
+            <Card/>
+            <Card/>
+          
         </v-col>
       </v-row>
     </v-container>

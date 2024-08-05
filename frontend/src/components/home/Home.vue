@@ -1,6 +1,6 @@
 <template>
-  <v-app>
-    <v-container fluid>
+  <!-- <v-app> -->
+    <v-container class="mt-n16">
       <v-row>
         <v-col cols="2">
           <v-navigation-drawer app v-model="drawer" :rail="rail" permanent @click="rail = false">
@@ -44,11 +44,17 @@
         </v-col>
       </v-row>
     </v-container>
-  </v-app>
+    <Maindest/>
+  <!-- </v-app> -->
 </template>
 
 <script>
+import Maindest from '../destination/mine/maindest.vue';
 export default {
+  name:"home",
+  components:{
+    Maindest
+  },
   data() {
     return {
       drawer: true,
