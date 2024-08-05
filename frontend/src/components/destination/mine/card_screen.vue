@@ -1,11 +1,11 @@
 full code:
 <template>
 
-<v-main>
-<v-responsive aspect-ratio="16/9">
-<v-container class=" mt-n8" >
+<!-- <v-main>
+<v-responsive aspect-ratio="16/9"> -->
+<!-- <v-container class=" mt-n8" > -->
 
-<v-row>
+<v-row class="box">
 
 <v-col cols="12">
 
@@ -53,7 +53,7 @@ elevation="2"
 
 <div class="large-icon mb-2">
 
-<v-img :src="source.image" contain></v-img>
+<v-img class="img" :src="source.image" contain></v-img>
 
 </div>
 
@@ -81,9 +81,9 @@ elevation="2"
 
 </v-row>
 
-</v-container>
-</v-responsive>
-</v-main>
+<!-- </v-container> -->
+<!-- </v-responsive>
+</v-main> -->
 
 </template>
 
@@ -165,9 +165,9 @@ align-items: center;
 
 justify-content: center;
 
-height: 100px;
+height: 150px;
 
-width: 70%; /* Ensure full width for equal margin */
+width: 90%; /* Ensure full width for equal margin */
 
 border: 1px solid #d3d3d313;
 
@@ -229,10 +229,13 @@ justify-content: center;
 
 .large-icon .v-img {
 
-max-width: 100%;
 
-max-height: 100%;
+min-width: 70px;
+min-height: 70px;
 
+ aspect-ratio: 3/2;  
+/* object-fit: contain; */
+/* background-color: transparent; */
 }
 
 
@@ -250,5 +253,6 @@ max-width: 120px;
 word-wrap: break-word;
 
 }
+
 
 </style>

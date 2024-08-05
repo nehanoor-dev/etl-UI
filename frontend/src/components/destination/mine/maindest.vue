@@ -24,13 +24,22 @@ export default {
 
 <template>
 
-    <v-container class="mt-n16 custom-container" >
+    <v-container class=" custom-container" >
+     
+     
+      <v-row>     
       <Title />
+      </v-row>
+      <v-row>
       <Search></Search>
-      <Cardsc></Cardsc>
-    <!-- <v-container>
-    <Cardscontainer></Cardscontainer>
-    </v-container> -->
+    </v-row>
+    <v-row class="box">
+      <Cardsc/>
+    </v-row>
+    
+      <!-- <v-container> -->
+    <!-- <Cardscontainer></Cardscontainer> -->
+   <!-- </v-container> -->
     
     
     </v-container>
@@ -48,7 +57,7 @@ import Cardsc from './card_screen.vue'
       Title,
       Search,
       Cardsc
-      // Cardscontainer
+       //Cardscontainer
     }
   }
   </script>
@@ -59,15 +68,20 @@ import Cardsc from './card_screen.vue'
   height: auto;
   margin-left: 0;
   margin-right: 0;
+  padding: 25px;
   /*overflow: scroll;; */
   background-color: #F1F4F8;
-  border: 5px solid #023C83;
+  /* border: 5px solid #023C83; */
   border-radius: 10px;
   /* text-align: center; */
   /* display: flex; 
   align-items: center;
   justify-content: center; */
   /* margin: auto; */
+}
+
+.box {
+  
 }
 </style>
   

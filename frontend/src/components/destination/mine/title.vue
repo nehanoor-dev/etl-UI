@@ -21,8 +21,10 @@ export default {
 .heading {
   font-size: 24px; /* Adjust the font size as needed */
   color: black; /* Adjust the color as needed */
+  font-size: 2em;
 }
 .text-center {
-  text-align: center;
+  text-justify: center;
+  margin-bottom: 10px;
 }
 </style>
