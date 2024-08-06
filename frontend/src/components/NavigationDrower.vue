@@ -30,7 +30,8 @@
                 :active="selectedItem === item.value"
                 :class="{'custom-list-item': true, 'selected-item': selectedItem === item.value}"
                 @click="handleItemClick(item)"
-            ></v-list-item>
+            ></v-list-item> 
+             <workspaceShow/>
             <v-divider></v-divider>
             <Profile/>
         </template>
@@ -39,7 +40,7 @@
 
 <script>
 import Profile from './Profile.vue';
-
+import workspaceShow from './WorkspaceShow.vue';
 export default {
     data() {
         return {
@@ -57,7 +58,7 @@ export default {
             ],
             appendItems: [
                 { route: '/help', value: 'help', icon: 'mdi-help-circle-outline', title: 'Help' },
-                { route: '/workspace', value: 'workspace', icon: 'mdi-folder-network-outline', title: 'Workspace' },
+                // { route: '/workspace', value: 'workspace', icon: 'mdi-folder-network-outline', title: 'Workspace' },
             ]
         };
     },
