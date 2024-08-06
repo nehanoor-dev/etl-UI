@@ -24,6 +24,7 @@ declare module 'vue' {
     SideBar: typeof import('./src/components/SideBar.vue')['default']
     Source: typeof import('./src/components/SubComponents/Source.vue')['default']
     Transformation: typeof import('./src/components/SubComponents/Transformation.vue')['default']
+    WebScrapPipeline: typeof import('./src/components/SubComponents/WebScrapPipeline.vue')['default']
     Workspace: typeof import('./src/components/SubComponents/Workspace.vue')['default']
   }
 }

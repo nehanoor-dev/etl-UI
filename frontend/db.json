@@ -1,0 +1,38 @@
+{
+  "stats": {
+    "totalConnections": 25,
+    "activeConnections": 142,
+    "disabledConnections": 11
+  },
+"customConnectors": [
+  { "name": "DataStream Connector X1", "type": "Source", "status": "Active", "date": "2023-03-15" },
+  { "name": "SyncFlow Pro", "type": "Source", "status": "In-active", "date": "2024-04-22" },
+  { "name": "ETL FusionLink", "type": "Source", "status": "Active", "date": "2022-05-05" },
+  { "name": "LoadMaster 360", "type": "Source", "status": "Active", "date": "2024-06-18" },
+  { "name": "Streamline Connect", "type": "Source", "status": "Active", "date": "2025-07-12" },
+  { "name": "ExtractaLink Elite", "type": "Source", "status": "In-active", "date": "2023-08-23" },
+  { "name": "TransformIQ Connector", "type": "Source", "status": "Active", "date": "2026-09-30" },
+  { "name": "StreamX Connector", "type": "Source", "status": "Active", "date": "2027-10-14" },
+  { "name": "DataBridge Pro", "type": "Source", "status": "Active", "date": "2024-11-02" },
+  { "name": "LoadSync Adapter", "type": "Source", "status": "Active", "date": "2025-12-20" },
+  { "name": "FlowMatic 3000", "type": "Source", "status": "Pending", "date": "2026-01-08" },
+  { "name": "DataNet Transform", "type": "Source", "status": "In-active", "date": "2025-02-17" },
+  { "name": "Ingestor Connect", "type": "Source", "status": "Active", "date": "2027-03-25" },
+  { "name": "SyncWave Connector", "type": "Source", "status": "Active", "date": "2026-04-09" },
+  { "name": "FusionLink DataHub", "type": "Source", "status": "Active", "date": "2028-05-21" },
+  { "name": "ETL ExpressLink", "type": "Source", "status": "Active", "date": "2025-06-04" },
+  { "name": "DataPulse Connector", "type": "Source", "status": "Active", "date": "2024-07-15" },
+  { "name": "ConnectX Transform", "type": "Source", "status": "Active", "date": "2025-08-26" },
+  { "name": "StreamLink Pro", "type": "Source", "status": "Active", "date": "2026-09-07" },
+  { "name": "FlowBridge Elite", "type": "Source", "status": "Active", "date": "2027-10-13" },
+  { "name": "DataFusion Adapter", "type": "Destination", "status": "Active", "date": "2025-11-22" },
+  { "name": "ETL QuantumLink", "type": "Source", "status": "In-active", "date": "2026-12-06" },
+  { "name": "SyncFlow Connector", "type": "Destination", "status": "In-active", "date": "2026-01-15" },
+  { "name": "StreamBridge Pro", "type": "Source", "status": "Active", "date": "2028-02-03" },
+  { "name": "DataConnect 360", "type": "Source", "status": "Pending", "date": "2027-03-19" },
+  { "name": "Connection 3", "type": "Source", "status": "In-active", "date": "2026-04-07" },
+  { "name": "Connection 4", "type": "Source", "status": "Pending", "date": "2029-05-25" }
+]
+
+
+}
