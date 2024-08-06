@@ -1,15 +1,42 @@
 <template>
-    <!-- <div><h1>this is destination</h1></div> -->
-     <Maindest></Maindest>
-    </template>
+    <v-container fluid>
+    <v-row>
+
+
+        <v-col cols="12" class="bg-grey-lighten-5"> 
+     
+        <DestinationUi/>  
     
-    <script>
-import Maindest from '../destination/mine/maindest.vue';
-    components:{
-        Maindest
-    }
-    </script>
+
+<!--<DestinationConfiguration/>
+     -->
+
+
+
+        </v-col>
+    </v-row>
+    </v-container>
+  </template>
+  
+  <script>
+ 
+
+import DestinationUi from '../destination/Destination Screen/DestinationUi.vue';
+
+//import DestinationConfiguration from './DestinationConfiguration.vue';
+  export default {
+    name: 'Destination',
+    components: {
+   
     
-    
-    <style>
-    </style>
+   
+  DestinationUi,
+  //DestinationConfiguration,
+ },
+    data: () => ({
+      
+          
+    }),
+  }
+  </script>
+  
