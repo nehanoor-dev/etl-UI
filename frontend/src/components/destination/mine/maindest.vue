@@ -25,14 +25,11 @@ export default {
 <template>
 
     <v-container class=" custom-container" >
-     
-     
       <v-row>     
       <Title />
       </v-row>
-      <v-row>
       <Search></Search>
-    </v-row>
+  
     <v-row class="box">
       <Cardsc/>
     </v-row>
@@ -46,7 +43,7 @@ export default {
   </template>
   
 <script>
-import Search from './search.vue';
+import Search from './search1.vue';
 import Title from './title.vue';
 import Cardscontainer from './cardscontainer.vue';
 import Cardsc from './card_screen.vue'

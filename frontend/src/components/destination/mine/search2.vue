@@ -3,7 +3,7 @@
       <v-col cols="10" class="d-flex justify-end">
         <div>
           <v-text-field
-            v-model="searchInput"
+            v-model="search"
             label="Search"
             type="text"
             variant="outlined"
@@ -44,12 +44,12 @@
             <v-card>
               <v-card-text class="pa-">
                 <v-btn
-                  v-for="item in filteredItems"
-                  :key="item.title"
+                  v-for="item in items"
+                  :key="item"
                   color="primary"
                   size="large"
                   variant="text"
-                  @click="searchItem(item.title)"
+                  @click="searchItem(item)"
                   class="mb-2"
                   block
                 >
@@ -64,23 +64,13 @@
   </template>
   
   <script>
-  import { mapState, mapActions } from 'vuex'
+  import axios from 'axios';
   
   export default {
     name: 'SearchComponent',
-    computed: {
-      ...mapState(['searchInput', 'searchResults', 'loading']),
-      filteredItems() {
-        if (!this.searchInput) {
-          return this.items;
-        }
-        return this.items.filter((item) =>
-          item.title.toLowerCase().includes(this.searchInput.toLowerCase())
-        );
-      }
-    },
     data() {
       return {
+        search: '',
         items: [
           { title: 'Database' },
           { title: 'Search Engine' },
@@ -90,13 +80,41 @@
           { title: 'File' },
           { title: 'DataWarehouse' },
           { title: 'BI Tools' },
-        ]
-      }
+        ],
+        loading: false,
+        searchResults: [],
+      };
+    },
+    computed: {
+      filteredItems() {
+        if (!this.search) {
+          return this.items;
+        }
+        return this.items.filter((item) =>
+          item.toLowerCase().includes(this.search.toLowerCase())
+        );
+      },
     },
     methods: {
-      ...mapActions(['searchAPI', 'searchItem'])
-    }
-  }
+      async searchAPI() {
+        this.loading = true;
+        try {
+          const response = await axios.post('http://10.0.52.171:8081/api/search', {
+            search: this.search,
+          });
+          this.searchResults = response.data;
+        } catch (error) {
+          console.error('Error searching API:', error);
+        } finally {
+          this.loading = false;
+        }
+      },
+      searchItem(item) {
+        this.search = item;
+        this.searchAPI();
+      },
+    },
+  };
   </script>
   
   <style scoped>

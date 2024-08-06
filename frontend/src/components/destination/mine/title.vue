@@ -22,6 +22,7 @@ export default {
   font-size: 24px; /* Adjust the font size as needed */
   color: black; /* Adjust the color as needed */
   font-size: 2em;
+  margin-bottom: 10px;
 }
 .text-center {
   text-justify: center;
