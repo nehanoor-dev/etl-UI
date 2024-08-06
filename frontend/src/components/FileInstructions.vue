@@ -31,9 +31,6 @@
                     <v-text-field v-model="editedItem.fat" label="File"></v-text-field>
                   </v-col>
                   <v-col cols="12" md="12" sm="6">
-                    <v-text-field v-model="editedItem.carbs" label="Carbs (g)"></v-text-field>
-                  </v-col>
-                  <v-col cols="12" md="12" sm="6">
                      <v-file-input v-model="editedItem.proteinFile" label="Protein File" accept=".jpg,.png,.pdf"></v-file-input>
                   </v-col>
                 </v-row>
