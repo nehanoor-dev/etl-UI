@@ -1,0 +1,714 @@
+//SourceUi.vue
+<template>
+
+<v-main>
+
+<v-container class="mt-n8">
+
+<v-row justify="left">
+
+<v-col cols="12">
+
+<v-row justify="space-between">
+
+<v-col>
+
+<v-card-title class="text-h5 font-weight-bold pb-0 mt-n3">
+
+UD Sources
+
+</v-card-title>
+
+</v-col>
+
+<v-col class="d-flex justify-end">
+
+<v-btn class="add-source-btn" @click="dialog = true">
+
+<v-icon prepend>mdi-plus</v-icon>
+
+<span>&nbsp;Request a New Source</span>
+
+</v-btn>
+
+</v-col>
+
+</v-row>
+
+
+
+<v-row justify="center">
+
+<v-col cols="6" lg="4">
+
+<v-text-field
+
+v-model="search"
+
+density="compact"
+
+label="Search Sources"
+
+prepend-inner-icon="mdi-menu"
+
+append-inner-icon="mdi-magnify"
+
+variant="solo-filled"
+
+flat
+
+hide-details
+
+single-line
+
+class="search-bar"
+
+@input="onSearchInput"
+
+@click:append-inner="onSearchIconClick"
+
+@click:prepend-inner="toggleMenu"
+
+></v-text-field>
+
+
+
+<v-menu
+
+v-model="menuOpen"
+
+:close-on-content-click="false"
+
+transition="slide-x-transitions"
+
+>
+
+<v-list>
+
+<v-list-item
+
+v-for="(item, index) in items"
+
+:key="index"
+
+@click="onMenuItemClick(item)"
+
+class="dropItems"
+
+>
+
+<v-list-item-title>{{ item.title }}</v-list-item-title>
+
+</v-list-item>
+
+</v-list>
+
+</v-menu>
+
+</v-col>
+
+</v-row>
+
+</v-col>
+
+</v-row>
+
+</v-container>
+
+
+
+<v-dialog v-model="dialog" max-width="600">
+
+<v-card>
+
+<v-card-text>
+
+<v-text-field v-model="newSourceName" label="Source Name"></v-text-field>
+
+<v-text-field v-model="newSourceLink" label="Source Link"></v-text-field>
+
+</v-card-text>
+
+<v-card-actions>
+
+<v-spacer></v-spacer>
+
+<v-btn color="primary" @click="addSource">
+
+Add
+
+</v-btn>
+
+<v-btn color="grey" @click="dialog = false">
+
+Cancel
+
+</v-btn>
+
+</v-card-actions>
+
+</v-card>
+
+</v-dialog>
+
+</v-main>
+
+</template>
+
+
+
+<script>
+
+import { mapActions } from 'vuex';
+
+
+
+export default {
+
+data: () => ({
+
+search: '',
+
+dialog: false,
+
+newSourceName: '',
+
+newSourceLink: '',
+
+menuOpen: false,
+
+items: [
+
+{ title: 'Database' },
+
+{ title: 'Search Engine' },
+
+{ title: 'Storage' },
+
+{ title: 'File Transfer' },
+
+{ title: 'API' },
+
+{ title: 'File' },
+
+{ title: 'DataWarehouse' },
+
+{ title: 'BI Tools' },
+
+],
+
+}),
+
+methods: {
+
+...mapActions(['fetchSources']),
+
+onSearchInput() {
+
+this.$store.commit('setSearchTerm', this.search);
+
+},
+
+onSearchIconClick() {
+
+this.onSearchInput();
+
+},
+
+addSource() {
+
+if (this.newSourceName && this.newSourceLink) {
+
+// Store the new source logic here
+
+// Example:
+
+// this.$store.dispatch('addSource', { name: this.newSourceName, link: this.newSourceLink });
+
+// Reset fields and close dialog
+
+this.newSourceName = '';
+
+this.newSourceLink = '';
+
+this.dialog = false;
+
+}
+
+},
+
+toggleMenu() {
+
+this.menuOpen = !this.menuOpen;
+
+},
+
+onMenuItemClick(item) {
+
+console.log('Clicked menu item:', item.title);
+
+// Add your logic for handling menu item clicks here
+
+this.menuOpen = false;
+
+},
+
+},
+
+created() {
+
+this.fetchSources();
+
+},
+
+};
+
+</script>
+
+
+
+<style>
+
+.v-overlay__content {
+
+left: 40%;
+
+top: 23%;
+
+min-width: 15vw;
+
+}
+
+
+
+.search-bar {
+
+background-color: #f5f5f5 !important;
+
+margin: auto;
+
+}
+
+
+
+.search-bar .v-icon {
+
+cursor: pointer !important;
+
+}
+
+
+
+.add-source-btn {
+
+font-family: 'Roboto', sans-serif;
+
+font-weight: 400;
+
+font-size: 1em;
+
+color: #fff;
+
+text-transform: none;
+
+padding: 10px 20px;
+
+border-radius: 8px;
+
+border: none;
+
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+
+
+
+.add-source-btn:hover {
+
+background-color: #e8f0fe;
+
+}
+
+
+
+.v-dialog .v-card {
+
+border-radius: 8px;
+
+}
+
+
+
+.v-dialog .v-btn {
+
+border-radius: 4px;
+
+}
+
+
+
+.text-h5 {
+
+font-family: 'Roboto', sans-serif;
+
+font-weight: bold;
+
+}
+
+
+
+.font-weight-bold {
+
+font-weight: bold;
+
+}
+
+
+
+.dropItems:hover {
+
+background-color: hsl(210, 23%, 90%);
+
+}
+
+</style>
+
+
+------------------
+
+//internal cards wali file ka code:
+<template>
+
+<v-main>
+
+<v-container class="mt-n16">
+
+<v-row>
+
+<v-col cols="12">
+
+<v-card flat>
+
+<v-card-text class="pt-2">
+
+<v-row class="no-gutters">
+
+<v-col
+
+v-for="source in filteredSources"
+
+:key="source._id"
+
+cols="12"
+
+sm="6"
+
+md="3"
+
+class="text-center mb-3 d-flex justify-center"
+
+>
+
+<v-card
+
+class="pa-4 internal-card rounded-lg"
+
+elevation="2"
+
+@click="navigateToSource(source)"
+
+>
+
+<div class="d-flex flex-column align-center justify-center">
+
+<div class="large-icon mb-2">
+
+<v-img :src="source.image" class="icon-image"></v-img>
+
+</div>
+
+<div class="source-name">
+
+{{ source.name }}
+
+</div>
+
+</div>
+
+</v-card>
+
+</v-col>
+
+
+
+<template v-if="!filteredSources.length">
+
+<v-col cols="12" class="text-center">
+
+<h4>No results found.</h4>
+
+</v-col>
+
+</template>
+
+</v-row>
+
+</v-card-text>
+
+</v-card>
+
+</v-col>
+
+</v-row>
+
+</v-container>
+
+</v-main>
+
+</template>
+
+
+
+<script>
+
+import { mapGetters } from 'vuex';
+
+
+
+export default {
+
+computed: {
+
+...mapGetters(['filteredSources']),
+
+},
+
+methods: {
+
+navigateToSource(source) {
+
+this.$router.push({ name: 'source-details', params: { source: source.name.toLowerCase() } });
+
+},
+
+},
+
+};
+
+</script>
+
+
+
+<style scoped>
+
+.internal-card {
+
+cursor: pointer;
+
+background-color: #ffffff;
+
+color: #000000;
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+height: 150px; /* Adjust height as needed */
+
+width: 90%;
+
+border: 1px solid #d3d3d313;
+
+transition: all 0.3s ease;
+
+margin-left: auto;
+
+margin-right: auto;
+
+}
+
+
+
+.internal-card:hover {
+
+background-color: #e8f0fe;
+
+}
+
+
+
+.internal-card:hover .large-icon,
+
+.internal-card:hover .source-name {
+
+color: #023C83 !important;
+
+}
+
+
+
+.v-card-text {
+
+padding-top: 8px;
+
+padding-bottom: 8px;
+
+}
+
+
+
+.large-icon {
+
+width: 90px; /* Adjust width as needed */
+
+height: 90px; /* Adjust height as needed */
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+}
+
+
+
+.icon-image {
+
+width: 90px; /* Ensure fixed size */
+
+height: 90px; /* Ensure fixed size */
+
+object-fit: contain; /* Maintain aspect ratio */
+
+}
+
+
+
+.source-name {
+
+text-align: center;
+
+font-size: 14px;
+
+line-height: 1.2;
+
+max-width: 120px;
+
+word-wrap: break-word;
+
+}
+
+</style>
+
+
+----------------------
+
+src/store/index.js
+import { createStore } from 'vuex';
+
+import axios from 'axios';
+
+
+
+export default createStore({
+
+state: {
+
+searchTerm: '',
+
+sources: [],
+
+sources: [
+
+{ name: 'Amplitude', connector: 'Amplitude', destination: 0, lastSync: '0 hours ago', status: 'up' },
+
+{ name: 'Datadog', connector: 'Datadog', destination: 1, lastSync: '9 hours ago', status: 'down' },
+
+{ name: 'GitHub', connector: 'GitHub', destination: 0, lastSync: '0 hours ago', status: 'up' },
+
+{ name: 'Intercom', connector: 'Intercom', destination: 0, lastSync: '0 hours ago', status: 'up' },
+
+{ name: 'Metabase', connector: 'Metabase', destination: 1, lastSync: '8 hours ago', status: 'up' },
+
+{ name: 'Square (Custom Connector)', connector: 'Square', destination: 1, lastSync: '8 hours ago', status: 'up' },
+
+{ name: 'Typeform', connector: 'Typeform', destination: 1, lastSync: '9 hours ago', status: 'up' },
+
+{ name: 'Zoom', connector: 'Zoom', destination: 1, lastSync: '4 days ago', status: 'down' }
+
+]
+
+},
+
+mutations: {
+
+setSearchTerm(state, searchTerm) {
+
+state.searchTerm = searchTerm;
+
+},
+
+setSources(state, sources) {
+
+state.sources = sources;
+
+},
+
+},
+
+getters: {
+
+filteredSources: (state) => {
+
+if (!state.searchTerm) {
+
+return state.sources;
+
+}
+
+return state.sources.filter((source) =>
+
+source.name.toLowerCase().includes(state.searchTerm.toLowerCase())
+
+);
+
+},
+
+},
+
+actions: {
+
+async fetchSources({ commit }) {
+
+try {
+
+const response = await axios.get('http://10.0.52.124:8081/api/sources/get-sources');
+
+const sources = response.data.map((source) => ({
+
+...source,
+
+image: source.image.startsWith('data:image')
+
+? source.image
+
+: 'data:image/png;base64,' + source.image,
+
+}));
+
+commit('setSources', sources);
+
+} catch (error) {
+
+console.error('Error fetching sources:', error);
+
+}
+
+},
+
+},
+
+});

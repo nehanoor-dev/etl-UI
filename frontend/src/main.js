@@ -13,7 +13,7 @@ import App from './App.vue'
 // Composables
 import { createApp } from 'vue'
 import router from './router'
-import zstore from './components/destination/mine/zstore'
+import zstore from './components/destination/mine/zstore1' 
 
 const app = createApp(App)
 
