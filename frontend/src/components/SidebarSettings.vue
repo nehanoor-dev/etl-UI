@@ -57,7 +57,7 @@ const selectedComponent = computed(() => {
     case 'Security':
       return SecuritySettings;
     case 'Workspace':
-      return SettingsWorkspace;  
+      return SettingsWorkspace;
     default:
       return null;
   }

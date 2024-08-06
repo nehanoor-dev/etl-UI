@@ -1,15 +1,11 @@
 <template>
-  <v-app class="bg-white" theme="light" >
+  <v-app class="bg-white" theme="light">
     <v-toolbar color="white" class="custom-toolbar sticky-toolbar">
-      
-     
       <v-spacer></v-spacer>
       <v-btn icon>
         <v-icon>mdi-bell</v-icon>
       </v-btn>
-     
     </v-toolbar>
-    
 
     <v-divider></v-divider>
   </v-app>
@@ -17,8 +13,8 @@
 
 <script>
 export default {
-  name: 'AppFooter'
-}
+  name: 'AppFooter',
+};
 </script>
 
 <style scoped>
@@ -31,6 +27,6 @@ export default {
   position: -webkit-sticky; /* For Safari */
   position: sticky;
   top: 0;
-  z-index: 1000; 
+  z-index: 1000;
 }
 </style>

@@ -15,24 +15,14 @@
 
     <span>Full Name</span>
 
-    <v-text-field 
-    autofocus 
-    v-model="fullName" 
-    variant="outlined" 
-    density="compact"> 
-    </v-text-field>
+    <v-text-field autofocus v-model="fullName" variant="outlined" density="compact"> </v-text-field>
 
-    <v-btn 
-    :disabled="!isSaveButtonEnabled"
-    type="submit" 
-    color="primary" 
-    class="float-right"> Update Name </v-btn>
-
-</v-form>
+    <v-btn :disabled="!isSaveButtonEnabled" type="submit" color="primary" class="float-right"> Update Name </v-btn>
+  </v-form>
 </template>
 
 <script setup>
-import { ref , watch } from 'vue';
+import { ref, watch } from 'vue';
 
 // Define a reactive variable to control the save button's enabled state
 const isSaveButtonEnabled = ref(false);
@@ -59,7 +49,6 @@ const updateName = () => {
 watch(fullName, (newValue) => {
   isSaveButtonEnabled.value = newValue.trim().length > 0;
 });
-
 </script>
 
 <style scoped>

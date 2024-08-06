@@ -67,5 +67,4 @@ function closeDailog() {
 watch(inputValue, (newValue) => {
   isSaveButtonEnabled.value = newValue.trim().length > 0;
 });
-
 </script>
