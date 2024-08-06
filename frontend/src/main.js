@@ -11,12 +11,15 @@ import { registerPlugins } from '@/plugins';
 import App from './App.vue';
 
 // Composables
-import { createApp } from 'vue';
-import router from './router';
+import { createApp } from 'vue'
+import router from './router'
+import zstore from './components/destination/mine/zstore1' 
 
 const app = createApp(App);
 
-registerPlugins(app);
+registerPlugins(app)
+
+app.use(zstore)
 
 app.use(router);
 
