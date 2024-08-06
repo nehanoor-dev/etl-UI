@@ -45,7 +45,7 @@
 
 <script>
 import Profile from './Profile.vue';
-import workspaceShow from './WorkspaceShow.vue';
+// import workspaceShow from './WorkspaceShow.vue';
 export default {
   data() {
     return {
