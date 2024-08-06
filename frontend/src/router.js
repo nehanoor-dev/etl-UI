@@ -7,7 +7,7 @@ import Destination from './components/SubComponents/Destination.vue'
 import BuildAIConnections from './components/SubComponents/BuildAIConnections.vue'
 import Help from './components/SubComponents/Help.vue'
 import Workspace from './components/SubComponents/Workspace.vue'
-import FileInstructions from './components/SubComponents/FileInstructions.vue'
+import FileInstructions from './components/FileInstructions.vue'
 import Settings from './components/SubComponents/Settings.vue'
 
 

@@ -11,7 +11,7 @@ declare module 'vue' {
     Dashboard: typeof import('./src/components/SubComponents/Dashboard.vue')['default']
     Destination: typeof import('./src/components/SubComponents/Destination.vue')['default']
     Dummy: typeof import('./src/components/SubComponents/dummy.vue')['default']
-    FileInstructions: typeof import('./src/components/SubComponents/FileInstructions.vue')['default']
+    FileInstructions: typeof import('./src/components/FileInstructions.vue')['default']
     Help: typeof import('./src/components/SubComponents/Help.vue')['default']
     Home: typeof import('./src/components/Home.vue')['default']
     NavBar: typeof import('./src/components/NavBar.vue')['default']

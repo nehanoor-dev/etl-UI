@@ -41,7 +41,7 @@ components: {
 </script>
 
 
-<style >
+<style scoped >
 .v-container {
 height: 100vh;
 }
