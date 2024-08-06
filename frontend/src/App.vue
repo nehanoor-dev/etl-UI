@@ -1,7 +1,6 @@
 <template>
   <v-app theme="light" style="background-color: white; width: 100%; height: 1000px;">
     <v-main>
-<<<<<<< HEAD
       <v-container class="auto-height-container">
         <v-row>
           <Sidbar />
@@ -20,7 +19,7 @@
 <script setup>
 import NavBar from './components/NavBar.vue';
 import Sidbar from './components/SideBar.vue';
-import maindest from './components/destination/mine/maindest.vue';
+import Maindest from './components/destination/mine/maindest.vue';
 </script>
 
 <style>

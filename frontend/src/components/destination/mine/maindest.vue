@@ -28,7 +28,7 @@ export default {
      
      
       <v-row>     
-      <Title />
+      <Title ></Title>
       </v-row>
       <v-row>
       <Search></Search>
@@ -52,7 +52,7 @@ import Cardscontainer from './cardscontainer.vue';
 import Cardsc from './card_screen.vue'
 
   export default {    
-    name: 'MainDest',
+    name: 'Maindest',
     components: {
       Title,
       Search,
