@@ -32,6 +32,7 @@ export default createStore({
                 'Authorization': `Bearer ${state.token}` // Include token in request headers
               }
             });
+            console.log("Hello")
             console.log(response.data);
              
               commit('getPipeLines', response.data);
@@ -64,7 +65,7 @@ export default createStore({
           },
           async deletePipeline({ commit , state }, pipelineId) {
             try {
-              await axios.delete(`http://10.0.52.179:8081/api/connections/${pipelineId}`, {
+              await axios.delete(`http://10.0.52.179:8081/api/connection/${pipelineId}`, {
                 headers: {
                   'Authorization':`Bearer ${state.token}`// Include token in request headers
                 }

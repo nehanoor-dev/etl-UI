@@ -161,6 +161,7 @@ const closeDialog = () => {
 
 const confirmDelete = () => {
   store.dispatch('deletePipeline', pipelineToDelete.value.id);
+  console.log('Enters')
   console.log(pipelineToDelete.value.id);
   closeDialog();
 };
@@ -181,7 +182,6 @@ const filterText = (value, query) => {
     typeof value === 'string' &&
     value.toString().toLocaleUpperCase().indexOf(query.toUpperCase()) !== -1;
 };
-
 
 
 </script>
