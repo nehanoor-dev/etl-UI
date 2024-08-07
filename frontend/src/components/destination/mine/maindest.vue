@@ -43,9 +43,8 @@ export default {
   </template>
   
 <script>
-import Search from './search1.vue';
+import Search from './search.vue';
 import Title from './title.vue';
-import Cardscontainer from './cardscontainer.vue';
 import Cardsc from './card_screen.vue'
 
   export default {    
@@ -54,7 +53,6 @@ import Cardsc from './card_screen.vue'
       Title,
       Search,
       Cardsc
-       //Cardscontainer
     }
   }
   </script>
