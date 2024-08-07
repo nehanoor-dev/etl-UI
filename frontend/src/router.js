@@ -12,8 +12,6 @@ import Pipeline from './components/DataPipeline/PipelineMain/Pipeline.vue';
 import Stepper from './components/DataPipeline/NewPipeline/Stepper.vue';
 
 import PipelineInfo from './components/DataPipeline/PipelineInfo/PipelineInfo.vue';
-import NewDestination from './components/DataPipeline/NewPipeline/Destination/NewDestination.vue';
-import ExistingDestiination from './components/DataPipeline/NewPipeline/Destination/ExistingDestiination.vue';
 import Loader from './components/DataPipeline/NewPipeline/Configuration/Loader.vue';
 import PipelinePopup from './components/PipelinePopup.vue';
 import MultipleSource from './components/DataPipeline/BulkPipeline/MultipleSource.vue';
@@ -51,16 +49,6 @@ const routes = [
     path: '/pipelineinfo/:id',
     name: 'PipelineInfo',
     component: PipelineInfo,
-  },
-  {
-    path: '/newdestination',
-    name: 'New Destination',
-    component: NewDestination,
-  },
-  {
-    path: '/ExistingDestination',
-    name: 'Existing Destination',
-    component: ExistingDestiination,
   },
   {
     path: '/loader',
