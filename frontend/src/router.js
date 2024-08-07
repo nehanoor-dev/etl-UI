@@ -16,6 +16,7 @@ import NewDestination from './components/DataPipeline/NewPipeline/Destination/Ne
 import ExistingDestiination from './components/DataPipeline/NewPipeline/Destination/ExistingDestiination.vue';
 import Loader from './components/DataPipeline/NewPipeline/Configuration/Loader.vue';
 import Setup from './components/DataPipeline/BulkPipeline/Setup.vue';
+import BulkPipelineSetup from './components/DataPipeline/BulkPipeline/BulkPipelineSetup.vue';
 
 
 
@@ -75,6 +76,11 @@ const routes = [
     path: '/setup',
     name: 'Setup',
     component: Setup,
+  },
+  {
+    path: '/bulkpipeline',
+    name: 'Bulkpipeline',
+    component: BulkPipelineSetup,
   },
 ];
 

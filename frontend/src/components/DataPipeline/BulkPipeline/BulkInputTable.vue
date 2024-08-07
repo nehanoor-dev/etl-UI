@@ -24,17 +24,17 @@
         <tr>
           <td>
             <v-row class="align-center no-gutters">
-              <v-col cols="1" >
+              <v-col cols="1">
                 <v-checkbox v-model="item.selected" @change="handleCheckboxChange(item)"></v-checkbox>
               </v-col>
               <v-col cols="3">
-                  {{ item.name }}
+                {{ item.name }}
               </v-col>
               <v-col cols="5">
                 <div>
                   <v-icon>mdi-snowflake</v-icon>
-                <span class="font-weight-bold mr-5 ml-1">{{ item.connector }} </span> 
-                <span class="font.weight-regular" style="font-size:12px;" >{{ item.connections }}</span> 
+                  <span class="font-weight-bold mr-5 ml-1">{{ item.connector }}</span>
+                  <span class="font-weight-regular" style="font-size:12px;">{{ item.connections }}</span>
                 </div>
               </v-col>
               <v-col cols="2" class="text-right">
@@ -49,27 +49,19 @@
 </template>
 
 <script setup>
-import { ref, provide, computed } from 'vue';
+import { ref, watch } from 'vue';
 
 const props = defineProps({
   tableList: Array,
 });
 
+const emit = defineEmits(['update-selected']);
+
 const search = ref('');
 
-const select = ref([]);
-
 const handleCheckboxChange = (item) => {
-  if (item.selected) {
-    if (!select.value.includes(item)) {
-      select.value.push(item);
-    }
-  } else {
-    select.value = select.value.filter(selectedItem => selectedItem !== item);
-  }
+  emit('update-selected', props.tableList.filter(item => item.selected));
 };
-
-provide('selectedData', select);
 </script>
 
 <style scoped>

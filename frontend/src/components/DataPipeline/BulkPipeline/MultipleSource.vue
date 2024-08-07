@@ -5,6 +5,7 @@
     </div>
     <BulkInputTable
       :table-list="sourcesData"
+      @update-selected="updateSelectedSources"
     />
 
     <div class="my-2">
@@ -35,6 +36,13 @@ onBeforeMount(() => {
   store.dispatch('fetchDestinations')
 });
 
+const selectedSources = ref([]);
+
+const updateSelectedSources = (newSelectedSources) => {
+  selectedSources.value = newSelectedSources;
+  console.log(selectedSources.value);
+};
+
 const sources = computed(() => store.state.source.sources || []);
 
 const sourcesData = computed(() => 
@@ -61,6 +69,7 @@ const destinations = [
         ];
 
         const BulkPipeline = () => {
+          
   router.push('/bulkconfig');
 };
 
