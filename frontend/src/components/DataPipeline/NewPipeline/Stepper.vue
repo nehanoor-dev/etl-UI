@@ -1,40 +1,39 @@
 <template>
-   
-        <v-stepper v-model="step" :items="items" show-actions>
-            <template v-slot:item.1>
-                <Source />
-            </template>
-            <template v-slot:item.2>
-                <Destination />
-            </template>
-            <template v-slot:item.3>
-                <ConfigMain />
-            </template>
-        </v-stepper>
-   
-       
-    
-
+  <v-container fluid>
+    <v-stepper v-model="step" :items="items" :hide-actions="true">
+      <template v-slot:item.1>
+        <Source @source-selected="handleSourceSelected" />
+      </template>
+      <template v-slot:item.2>
+        <Destination @destination-selected="handleDestinationSelected" />
+      </template>
+      <template v-slot:item.3>
+        <ConfigMain />
+      </template>
+    </v-stepper>
+  </v-container>
 </template>
-<script setup>
 
+<script setup>
 import { ref } from 'vue';
 import Source from './source/Source.vue';
 import Destination from './Destination/Destination.vue';
-import StreamsMain from './Streams/StreamsMain.vue';
 import ConfigMain from './Configuration/ConfigMain.vue';
-import BulkPipelineSetup from '../BulkPipeline/BulkPipelineSetup.vue';
 import { useRoute } from 'vue-router';
 
-
-const route = useRoute()
-
-
-     const name = ref(route.name.value)
-
-console.log('stepper')
+const route = useRoute();
 const step = ref(1);
-const items = ref(['Define Source', 'Define Destination', 'Configure Pipeline'])
-const items2 = ref(['Bulk Pipeline Setup', 'Configure Pipeline'])
+const items = ref(['Define Source', 'Define Destination', 'Configure Pipeline']);
+const selectedSource = ref(null);
+const selectedDestination = ref(null);
 
+const handleSourceSelected = (source) => {
+  selectedSource.value = source;
+  step.value = 2;
+};
+
+const handleDestinationSelected = (destination) => {
+  selectedDestination.value = destination;
+  step.value = 3;
+};
 </script>

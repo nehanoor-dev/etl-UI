@@ -7,7 +7,7 @@ import destination from "./destination";
 export default createStore({
     state:{
         pipelines : [],
-        token : "66b1c00ee1c279272e0c526d|sWs8WKRPeEcZiTcdDeKr1PkXvn4YnEWKmyPKiKRm60d2c998",
+        token : "66b30f1c02f04cf3ff04be0b|Apk0xtGOT3EeuneNytaQ80Ps76Ncl4gxzXX6lYJuf95822b3",
         jobHistory: [],
     },
     mutations:{

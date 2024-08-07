@@ -10,7 +10,7 @@ import FileInstructions from './components/FileInstructions.vue';
 import Settings from '@/components/SidebarSettings.vue';
 import Pipeline from './components/DataPipeline/PipelineMain/Pipeline.vue';
 import Stepper from './components/DataPipeline/NewPipeline/Stepper.vue';
-import NewSource from './components/DataPipeline/NewPipeline/source/NewSource.vue';
+
 import PipelineInfo from './components/DataPipeline/PipelineInfo/PipelineInfo.vue';
 import NewDestination from './components/DataPipeline/NewPipeline/Destination/NewDestination.vue';
 import ExistingDestiination from './components/DataPipeline/NewPipeline/Destination/ExistingDestiination.vue';
@@ -47,11 +47,6 @@ const routes = [
     path: '/newpipeline',
     name: 'newpipeline',
     component: Stepper,
-  },
-  {
-    path: '/newsource',
-    name: 'New Source',
-    component: NewSource,
   },
   {
     path: '/pipelineinfo/:id',
