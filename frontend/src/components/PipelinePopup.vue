@@ -2,12 +2,12 @@
     <v-card v-if="showContainer" class="container-card" max-width="500px">
       <v-card-text>
         <v-list>
-          <v-list-item @click="navigateTo('/bulkpipeline')">
+          <v-list-item @click="navigateTo('/multiplesource')">
             <v-list-item-content>
               <v-list-item-title>Multiple Source</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <v-list-item @click="navigateTo('/path2')">
+          <v-list-item @click="navigateTo('/multipledestination')">
             <v-list-item-content>
               <v-list-item-title>Multiple Destination</v-list-item-title>
             </v-list-item-content>

@@ -15,15 +15,14 @@ import PipelineInfo from './components/DataPipeline/PipelineInfo/PipelineInfo.vu
 import NewDestination from './components/DataPipeline/NewPipeline/Destination/NewDestination.vue';
 import ExistingDestiination from './components/DataPipeline/NewPipeline/Destination/ExistingDestiination.vue';
 import Loader from './components/DataPipeline/NewPipeline/Configuration/Loader.vue';
-import Setup from './components/DataPipeline/BulkPipeline/Setup.vue';
-import BulkPipelineSetup from './components/DataPipeline/BulkPipeline/BulkPipelineSetup.vue';
 import PipelinePopup from './components/PipelinePopup.vue';
+import MultipleSource from './components/DataPipeline/BulkPipeline/MultipleSource.vue';
+import MultipleDestination from './components/DataPipeline/BulkPipeline/MultipleDestination.vue';
 
 
 
 import WebScrapPipeline from './components/SubComponents/WebScrapPipeline.vue'
 
-import BulkPipelines from './components/SubComponents/BulkPipelines.vue'
 
 
 
@@ -69,19 +68,19 @@ const routes = [
     component: Loader,
   },
   {
-    path: '/setup',
-    name: 'Setup',
-    component: Setup,
-  },
-  {
-    path: '/bulkpipeline',
-    name: 'Bulkpipeline',
-    component: BulkPipelineSetup,
-  },
-  {
     path: '/bulkpipelines',
     name: 'Bulkpipelines',
     component: PipelinePopup,
+  },
+  {
+    path: '/multiplesource',
+    name: 'MultipleSource',
+    component: MultipleSource,
+  },
+  {
+    path: '/multipledestination',
+    name: 'MultipleDestination',
+    component: MultipleDestination,
   },
 ];
 
