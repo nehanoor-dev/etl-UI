@@ -12,7 +12,7 @@
       <v-card min-width="300">
         <v-list>
           <v-list-item
-            v-for="item in appendItems"
+            v-for="item in appendItems" 
             :key="item.value"
             :prepend-icon="item.icon"
             :title="item.title"
