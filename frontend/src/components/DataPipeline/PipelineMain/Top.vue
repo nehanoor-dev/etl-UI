@@ -17,7 +17,6 @@
             <!-- Right Side -->
             <v-col class="d-flex justify-end">
                 <Button></Button>
-                <BulkButton />
             </v-col>
 
         </v-row>
@@ -27,7 +26,6 @@
 
 <script setup>
 import Button from './Button.vue';
-import BulkButton from './BulkButton.vue';
 import { ref } from 'vue';
 const healthy = ref(9);
 const inactive = ref(4);

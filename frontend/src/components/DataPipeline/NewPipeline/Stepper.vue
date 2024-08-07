@@ -21,9 +21,7 @@
 import { ref } from 'vue';
 import Source from './source/Source.vue';
 import Destination from './Destination/Destination.vue';
-import StreamsMain from './Streams/StreamsMain.vue';
 import ConfigMain from './Configuration/ConfigMain.vue';
-import BulkPipelineSetup from '../BulkPipeline/BulkPipelineSetup.vue';
 import { useRoute } from 'vue-router';
 
 

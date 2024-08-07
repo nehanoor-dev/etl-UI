@@ -18,15 +18,18 @@ const newPipeline = () => {
 <style scoped>
 
 .custom-button {
-    background-color: #F5FAFE;
-    color: #023C83;
+  background-color:#023c83;
+  color: white;
+  font-size: 10px;
+  text-transform: capitalize;
   }
 
   .custom-button .v-icon {
-    margin-right: 10px;
+    margin-right: 12px;
   }
 
   .custom-button:hover {
-    background-color: #e1ecf7;
+    background-color:#023c83;
+    color: white;
   }
 </style>
