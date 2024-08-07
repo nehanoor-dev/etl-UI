@@ -13,9 +13,8 @@ import maindest from './components/destination/mine/maindest.vue'
 
 
 const routes = [
-  
   { path: '/dashboard', component: Dashboard },
-  { path: '/Settings', component: Settings },
+  { path: '/settings', component: Settings },
 
   { path: '/FileInstructions', component: FileInstructions },
   { path: '/pipelines', component: Pipelines },
@@ -25,12 +24,11 @@ const routes = [
   {name: 'maindest', path: '/destination/maindest.vue', component: maindest},
   { path: '/build-ai-connection', component: BuildAIConnections },
   { path: '/help', component: Help },
-  { path: '/workspace', component: Workspace },
-]
+];
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
-})
+});
 
-export default router
+export default router;

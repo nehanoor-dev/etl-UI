@@ -7,7 +7,7 @@
           <v-col cols="12" style="height: 10vh;">
             <NavBar />
           </v-col>
-          <v-col cols="12" style="height: 90vh;">
+          <v-col cols="12" style="height: 90vh">
             <router-view></router-view>
           </v-col>
         </v-row>
