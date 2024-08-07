@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     BuildAIConnections: typeof import('./src/components/SubComponents/BuildAIConnections.vue')['default']
+    BulkPipelines: typeof import('./src/components/SubComponents/BulkPipelines.vue')['default']
     Dashboard: typeof import('./src/components/SubComponents/Dashboard.vue')['default']
     Destination: typeof import('./src/components/SubComponents/Destination.vue')['default']
     Dummy: typeof import('./src/components/SubComponents/dummy.vue')['default']

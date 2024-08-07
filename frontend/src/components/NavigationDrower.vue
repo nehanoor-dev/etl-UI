@@ -99,6 +99,7 @@
     { route: '/dashboard', value: 'dashboard', icon: 'mdi-view-dashboard', title: 'Dashboard' },
     
     { route: '/pipelines', value: 'pipeline', icon: 'mdi-pipe', title: 'Pipelines' },
+    { route: '/bulk-pipelines', value: 'bulk-pipeline', icon: 'mdi-multicast', title: 'Bulk Pipelines' },
     
     { route: '/webscrappipeline', value: 'web-scrap-pipeline', icon: 'mdi-spider-web', title: 'Web Scrap Pipelines' },
     

@@ -22,11 +22,14 @@ import Settings from './components/SubComponents/Settings.vue'
 
 import WebScrapPipeline from './components/SubComponents/WebScrapPipeline.vue'
 
+import BulkPipelines from './components/SubComponents/BulkPipelines.vue'
+
 
 
 
 const routes = [
 
+{ path: '/', component: Dashboard },
 { path: '/dashboard', component: Dashboard },
 
 { path: '/Settings', component: Settings },
@@ -36,6 +39,7 @@ const routes = [
 { path: '/FileInstructions', component: FileInstructions },
 
 { path: '/pipelines', component: Pipelines },
+{ path: '/bulk-pipelines', component: BulkPipelines },
 
 { path: '/source', component: Source },
 

@@ -82,7 +82,7 @@
         <v-col cols="12">
           <v-card class="pa-4">
             <h3>Custom Connectors</h3>
-            <v-data-table :headers="combinedHeaders" :items="combinedData" class="elevation-2"></v-data-table>
+            <v-data-table  :items="combinedData" class="elevation-2"></v-data-table>
           </v-card>
         </v-col>
       </v-row>
