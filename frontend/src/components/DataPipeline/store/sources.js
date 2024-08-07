@@ -2,7 +2,8 @@ import axios from 'axios';
 
 export default {
      state: {
-        sources: []
+        sources: [],
+        token : "66b333ab02f04cf3ff04be0c|QbMjwjQaDKTuMqXiI1OUAl1rGWo9ABwcSyeNWN0o0362a37b"
      },
      mutations: {
         getSources(state, res){
@@ -11,25 +12,15 @@ export default {
         }
      },
      actions: {
-         async fetchSources({ commit }){
+         async fetchSources({ commit , state}){
             try{
-            const res = [{
-                name : "Connector",
-                connector : "GoogleSheets",
-                connections : "3 connections",
-            },
-            {
-                name : "myConnector",
-                connector : "GoogleSheets",
-                connections : "3 connections",
-            },
-            {
-                name : "myConnector",
-                connector : "GoogleSheets",
-                connections : "3 connections",
-            }
-        ]
-            commit('getSources', res)
+                const response = await axios.get('http://10.0.52.179:8081/api/connectors' , {
+                    headers: {
+                      'Authorization': `Bearer ${state.token}` // Include token in request headers
+                    }
+                  });
+                console.log(response.data.sources)
+            commit('getSources', response.data.sources)
         }catch(err){
             console.log("Error " + err)
         }

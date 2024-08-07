@@ -7,23 +7,24 @@
                 <p class="headingFont">Connection Name</p>
                 <span class="font">Name of your Connection</span>
             </v-col>
-            <v-text-field :model-value=connectionName variant="outlined" width="40px" readonly></v-text-field>
+            <v-text-field v-model=connectionName variant="outlined" width="40px" ></v-text-field>
         </v-row>
         <v-row>
             <v-col>
                 <p class="headingFont">Replication Frequency</p>
                 <span class="font">How often your data will sync to your destinaiton</span>
             </v-col>
-            <v-text-field :model-value=connectionName variant="outlined" width="40px" readonly></v-text-field>
+            <v-text-field v-model=frequency variant="outlined" width="40px" ></v-text-field>
         </v-row>
         <v-row>
             <v-col>
                 <p class="headingFont">Schedule Type</p>
                 <span class="font">How you want your sync to be triggered?</span>
             </v-col>
-            <v-select v-model="scheduleType[0]" :items=scheduleType width="40px" variant="outlined"></v-select>
+            <v-select v-model="selectedScheduleType" :items=scheduleType width="40px" variant="outlined"></v-select>
         </v-row>
         </v-col>
+
         <v-col cols="12" lg="5" md="5" class="pa-5">
             <v-btn @click="syncing" color="primary" >Finish & Sync</v-btn>
         </v-col>
@@ -33,13 +34,33 @@
 <script setup>
 import { ref } from 'vue';
 import router from '@/router';
+import { useStore } from 'vuex';
+
+const store = useStore();
 
 const connectionName = ref("Custom Connection")
+const selectedScheduleType = ref("Schedule")
 const scheduleType = ref(['Schedule', 'Manual', 'Corn'])
-const DestNamespace = ref(null)
+const frequency = ref("Enter")
+
+const props = defineProps({
+    sourceId: String,
+    destinationId: String
+})
 
 const syncing = ()=> {
-    router.push('/loader')
+    console.log(props.destinationId)
+    const data = {
+    name: connectionName.value,
+    source_connector_id: props.sourceId,
+    destination_connector_id: props.destinationId,
+    status: "enabled",
+    frequency: frequency.value,
+    schedule_type: selectedScheduleType.value.toLowerCase()
+  };
+    store.dispatch('createPipelines' ,data )
+
+    //router.push('/loader')
 }
 
 </script>

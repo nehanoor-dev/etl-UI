@@ -4,19 +4,19 @@
     :id="id"
     ></TopContainer>
 
-    <StreamsTable
+    <JobHistoryTable
     :id="id"
     >
-    </StreamsTable>
+    </JobHistoryTable>
 
   </template>
-  
+
   <script setup>
   import { ref, computed, onMounted } from 'vue';
   import { useRoute } from 'vue-router';
   import { useStore } from 'vuex';
   import TopContainer from './TopContainer.vue';
-  import StreamsTable from './JobHistoryTable.vue';
+  import JobHistoryTable from './JobHistoryTable.vue';
   
   const route = useRoute();
   const store = useStore();

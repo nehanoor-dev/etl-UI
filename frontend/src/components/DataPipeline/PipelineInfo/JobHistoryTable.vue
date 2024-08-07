@@ -55,7 +55,7 @@
   </template>
   
   <script setup>
-  import { ref , onMounted, computed} from 'vue';
+  import { ref , onBeforeMount, computed} from 'vue';
   import AllDropdown from '../PipelineMain/AllDropdown.vue';
   import { useStore } from 'vuex';
 
@@ -70,11 +70,12 @@
     id: String,
   });
 
-  onMounted(() => {
+  onBeforeMount(() => {
   store.dispatch('fetchJobHistory', props.id);
   });
 
   const jobHistory = computed(() => store.getters.getJobHistory || []);
+  console.log(jobHistory)
 
   </script>
   

@@ -19,7 +19,7 @@
                     </template>
 
                     <template v-slot:item="{ item }">
-                        <tr @click="selectSource(item)">
+                        <tr @click="selectSource(item.id)">
                             <td >
                                 <v-row class="align-center no-gutters">
                                     <v-col cols="3">
@@ -27,13 +27,21 @@
                                     </v-col>
                                     <v-col cols="5">
                                         <div>
-                                            <v-icon>mdi-snowflake</v-icon>
+                                            <v-icon class="mr-2"
+                                                >
+                                                    <v-img
+                                                    class="rounded-icon"
+                                                    :src="'data:image/png;base64,' + item.image"
+                                                    height="20"
+                                                    width="20"
+                                                    ></v-img>
+                                                </v-icon>
                                             <span class="font-weight-bold mr-5 ml-1">{{ item.connector }}</span>
                                         </div>
                                     </v-col>
                                     <v-col cols="3">
                                         <span class="font-weight-regular" style="font-size:12px;">{{
-                                            item.connections }}</span>
+                                            item.lastUpdated}}</span>
                                     </v-col>
                                     <v-col cols="1">
                                         <v-icon>
@@ -64,21 +72,22 @@ onBeforeMount(() => {
 });
 
 const sources = computed(() => store.state.source.sources || []);
+console.log(sources);
 
 const sourcesData = computed(() =>
     (sources.value || []).map(source => ({
+        id: source._id,
         name: source.name,
-        connector: source.connector,
-        image: "",
-        connections: source.connections,
-        selected: false,
+        connector: source.name,
+        image: source.image,
+        lastUpdated: source.updated_at,
     }))
 );
 
-const selectSource = (source) =>{
-    console.log(source);
-    emit('source-selected', source);
+const selectSource = (id) =>{
+    console.log(id);
+    emit('source-selected', id);
+    console.log("Exits");
 }
-console.log(sourcesData);
 
 </script>

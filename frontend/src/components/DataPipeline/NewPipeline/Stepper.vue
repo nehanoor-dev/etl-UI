@@ -8,7 +8,11 @@
         <Destination @destination-selected="handleDestinationSelected" />
       </template>
       <template v-slot:item.3>
-        <ConfigMain />
+        <ConfigMain
+        :source-id="selectedSource"
+        :destination-id="selectedDestination"
+        >
+        </ConfigMain>
       </template>
     </v-stepper>
   </v-container>
@@ -18,7 +22,7 @@
 import { ref } from 'vue';
 import Source from './source/Source.vue';
 import Destination from './Destination/Destination.vue';
-import ConfigMain from './Configuration/ConfigMain.vue';
+import ConfigMain from './Configuration/ConfigForm.vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
