@@ -7,7 +7,7 @@ import destination from "./destination";
 export default createStore({
     state:{
         pipelines : [],
-        token : "66b30f1c02f04cf3ff04be0b|Apk0xtGOT3EeuneNytaQ80Ps76Ncl4gxzXX6lYJuf95822b3",
+        token : "66b333ab02f04cf3ff04be0c|QbMjwjQaDKTuMqXiI1OUAl1rGWo9ABwcSyeNWN0o0362a37b",
         jobHistory: [],
     },
     mutations:{
@@ -22,6 +22,10 @@ export default createStore({
         },
         updatePipeline(state, pipelineId){
           state.pipelines = state.pipelines.filter(pipeline => pipeline.id !== pipelineId);
+        },
+        filterPipelines(state, pipelineId) {
+          state.pipelines = state.pipelines.filter(pipeline => pipeline.id !== pipelineId);
+
         }
     },
     actions:{
@@ -93,7 +97,27 @@ export default createStore({
             } catch (error) {
               console.error('Error saving changes:', error);
             }
+          },
+          async getFilters({ commit, state }, { pipelineId, Statuses, scheduleTypes, source, destinations }) {
+            const params = new URLSearchParams();
+          
+            if (Statuses) params.append('status', Statuses);
+            if (scheduleTypes) params.append('scheduleType', scheduleTypes);
+            if (source) params.append('source', source);
+            if (destination) params.append('destination', destination);
+          
+            try {
+              const response = await axios.get(`http://10.0.52.179:8081/api/filter-connections?${params.toString()}`, {
+                headers: {
+                  'Authorization': `Bearer ${state.token}` // Include token in request headers
+                }
+              });
+              commit('filterPipelines', { pipelineId, filters: response.data });
+            } catch (err) {
+              console.log("Error during filters", err);
+            }
           }
+          
         },
     getters: {
       getPipelineById: (state) => (id) => {

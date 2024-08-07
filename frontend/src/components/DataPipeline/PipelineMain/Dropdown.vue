@@ -4,10 +4,10 @@
             <v-col lg="8" md="10" sm="12" >
                 <v-row >
                     <v-col  >
-                        <AllDropdown :drop-down-list="connections"></AllDropdown>
+                        <AllDropdown :drop-down-list="Statuses"></AllDropdown>
                     </v-col>
                     <v-col >
-                        <AllDropdown :drop-down-list="statuses"></AllDropdown>
+                        <AllDropdown :drop-down-list="scheduleTypes"></AllDropdown>
                     </v-col>
                     <v-col >
                         <AllDropdown :drop-down-list="sources"></AllDropdown>
@@ -25,39 +25,33 @@
 
 </template>
 
-<script>
-import { ref } from 'vue';
+<script setup>
+import { onMounted, ref } from 'vue';
 import { defineProps } from 'vue';
 import { reactive } from 'vue';
 import AllDropdown from './AllDropdown.vue';
 import Table from './Table.vue';
+import { useStore } from 'vuex';
 
-export default {
-
-    setup() {
-
+const store = useStore();
+// onMounted(()=>{
+//     store.dispatch('getFilters', Statuses, scheduleTypes, sources, destinations)
+// })
         const props = defineProps({
             headers: String,
             items: String
         }); 
-        const connection = ref(['All Connections']);
-        const connections = ref(['All Connections', 'Enabled Connections', 'Disable Connection']);
+        const Status = ref(['Enable']);
+        const Statuses = ref(['Enable', 'Disable']);
 
-        const status = ref(['All Statuses']);
-        const statuses = ref(['Healthy', 'Failed', 'Running']);
+        const scheduleType = ref(['Scheduled']);
+        const scheduleTypes = ref(['Mannual', 'Scheduled', 'Cron']);
 
         const source = ref(['All sources']);
         const sources = ref(['source1', 'source2']);
 
         const destination = ref(['All Destinations']);
         const destinations = ref(['Destination1', 'Destination2']);
-
-       
-        // const connections = ref([
-        //     { name: 'Connection 1', enable: true },
-        //     { name: 'Connection 2', enable: false },
-        //     { name: 'Connection 3', enable: true },
-        // ]);
 
         const filteredConnections = ref([]);
 
@@ -71,21 +65,6 @@ export default {
             }
         };
 
-        return {
-            source,
-            sources,
-            destination,
-            destinations,
-            status,
-            statuses,
-            connection,
-            connections,
-            filteredConnections,
-            filterConnections,
-        };
-    },
-
-};
 </script>
 
 
