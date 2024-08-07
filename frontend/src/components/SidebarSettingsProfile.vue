@@ -1,4 +1,5 @@
-<template>
+<!-- <template>
+ 
   <div class="text-h5">Profile</div>
   <v-form @submit.prevent="updateName" class="mt-4">
     <span>Email</span>
@@ -19,6 +20,7 @@
 
     <v-btn :disabled="!isSaveButtonEnabled" type="submit" color="primary" class="float-right"> Update Name </v-btn>
   </v-form>
+
 </template>
 
 <script setup>
@@ -46,9 +48,55 @@ const updateName = () => {
  * @param {string} newValue - The new value of fullName
  * @returns {void}
  */
-watch(fullName, (newValue) => {
+ watch(fullName, (newValue) => {
   isSaveButtonEnabled.value = newValue.trim().length > 0;
 });
+</script>
+
+<style scoped>
+.v-field__field {
+  color: aqua;
+}
+</style>
+ -->
+
+<template>
+  <div class="text-h5">Profile</div>
+  <!-- Form to update profile information -->
+  <v-form @submit.prevent="profileStore.updateName" class="mt-4">
+    <span>Email</span>
+
+    <!-- Email field (readonly) -->
+    <v-text-field
+      variant="outlined"
+      v-model="profileStore.email"
+      readonly
+      class="email"
+      density="compact"
+      bg-color="grey-lighten-5"
+      base-color="grey-lighten-5"
+      color="grey-lighten-3"
+    ></v-text-field>
+
+    <span>Full Name</span>
+    <v-text-field autofocus v-model="profileStore.fullName" variant="outlined" density="compact"></v-text-field>
+
+    <v-btn
+      :disabled="!profileStore.isSaveButtonEnabled"
+      type="submit"
+      color="primary"
+      class="float-right"
+      text="Update Name"
+    >
+    </v-btn>
+  </v-form>
+</template>
+
+<script setup>
+import { useProfileStore } from '@/store/modules/settings-profile.js';
+
+// Initialize the Pinia store instance
+const profileStore = useProfileStore();
 </script>
 
 <style scoped>

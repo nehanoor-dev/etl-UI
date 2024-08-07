@@ -65,16 +65,13 @@ export default {
         { route: '/destination', value: 'destination', icon: 'mdi-map-marker-circle', title: 'Destination' },
         { route: '/build-ai-connection', value: 'build-ai-connection', icon: 'mdi-connection', title: 'Builder' },
         {
-          route: '/FileInstructions',
+          route: '/file-instructions',
           value: 'FileInstructions',
           icon: 'mdi-text-box-multiple-outline',
           title: 'File Instructions',
         },
       ],
-      appendItems: [
-        { route: '/help', value: 'help', icon: 'mdi-help-circle-outline', title: 'Help' },
-        // { route: '/workspace', value: 'workspace', icon: 'mdi-folder-network-outline', title: 'Workspace' },
-      ],
+      appendItems: [{ route: '/help', value: 'help', icon: 'mdi-help-circle-outline', title: 'Help' }],
     };
   },
   methods: {

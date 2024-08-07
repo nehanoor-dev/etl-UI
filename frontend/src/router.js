@@ -13,7 +13,7 @@ const routes = [
   { path: '/dashboard', component: Dashboard },
   { path: '/settings', component: Settings },
 
-  { path: '/FileInstructions', component: FileInstructions },
+  { path: '/file-instructions', component: FileInstructions },
   { path: '/pipelines', component: Pipelines },
   { path: '/source', component: Source },
   { path: '/transformation', component: Transformation },

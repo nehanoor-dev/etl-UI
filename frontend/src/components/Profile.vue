@@ -34,7 +34,7 @@ export default {
     message: false,
     hints: true,
     appendItems: [
-      { route: '/Settings', value: 'Setting', icon: 'mdi-cog', title: 'Setting' },
+      { route: '/settings', value: 'Setting', icon: 'mdi-cog', title: 'Setting' },
       { route: '/Logout', value: 'Logout', icon: 'mdi-logout', title: 'Logout' },
     ],
   }),

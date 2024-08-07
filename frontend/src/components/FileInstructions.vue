@@ -36,33 +36,35 @@
                     <v-text-field
                       hide-details
                       variant="outlined"
-                      v-model="editedItem.name"
-                      label="Dessert name"
+                      v-model="editedItem.dataset_name"
+                      label="Dataset Name"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" md="12" sm="6">
                     <v-text-field
                       hide-details
                       variant="outlined"
-                      v-model="editedItem.calories"
-                      label="Calories"
+                      v-model="editedItem.destination_id"
+                      label="Destination"
                     ></v-text-field>
                   </v-col>
-                  <v-col cols="12" md="12" sm="6">
+                  <v-col cols="12" md="12" sm="6" v-if="editedIndex !== -1">
                     <v-text-field
                       hide-details
                       variant="outlined"
-                      v-model="editedItem.fat"
-                      label="Fat (g)"
+                      v-model="editedItem.format"
+                      label="Format"
+                      :readonly="true"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" md="12" sm="6">
                     <v-file-input
                       hide-details
                       variant="underlined"
-                      v-model="editedItem.proteinFile"
+                      v-model="editedItem.file"
                       label="Upload File"
-                      accept=".jpg,.png,.pdf"
+                      accept=".txt,.json,.xlsx,.xls,"
+                      multiple
                     ></v-file-input>
                   </v-col>
                 </v-row>
@@ -98,14 +100,15 @@
       <v-icon class="me-2" size="small" @click="editItem(item)"> mdi-pencil </v-icon>
       <v-icon size="small" @click="deleteItem(item)"> mdi-delete </v-icon>
     </template>
-    <template v-slot:no-data>
+    <!-- <template v-slot:no-data>
       <v-btn color="primary" @click="initialize"> Reset </v-btn>
-    </template>
+    </template> -->
   </v-data-table>
 </template>
 
 <script setup>
 import { ref, computed, watch, nextTick } from 'vue';
+import API from '@/services/api.js';
 
 const dialog = ref(false);
 const dialogDelete = ref(false);
@@ -114,28 +117,18 @@ const headers = [
   {
     title: 'Dataset Name',
     align: 'start',
-    key: 'name',
+    key: 'dataset_name',
   },
-  { title: 'Destination', key: 'calories' },
-  { title: 'File Format', key: 'proteinFile' },
-  { title: 'Updated_at', key: 'fat' },
+  { title: 'Destination', key: 'destination_id' },
+  { title: 'Format', key: 'format' },
+  // { title: 'File', key: 'file' },
   { title: 'Actions', key: 'actions', sortable: false },
 ];
 
 const desserts = ref([]);
 const editedIndex = ref(-1);
-const editedItem = ref({
-  name: '',
-  calories: '',
-  fat: '',
-  proteinFile: '',
-});
-const defaultItem = {
-  name: '',
-  calories: '',
-  fat: '',
-  proteinFile: '',
-};
+const editedItem = ref({});
+const defaultItem = {};
 
 const formTitle = computed(() => (editedIndex.value === -1 ? 'New Item' : 'Edit Item'));
 
@@ -146,24 +139,15 @@ watch(dialogDelete, (val) => {
   if (!val) closeDelete();
 });
 
-const initialize = () => {
-  desserts.value = [
-    { name: 'Frozen Yogurt', calories: 159, fat: 6.0, carbs: 24, proteinFile: 'data.csv' },
-    { name: 'Ice cream sandwich', calories: 237, fat: 9.0, carbs: 37, proteinFile: 'data.csv' },
-    { name: 'Eclair', calories: 262, fat: 16.0, carbs: 23, proteinFile: 'data.csv' },
-    { name: 'Cupcake', calories: 305, fat: 3.7, carbs: 67, proteinFile: 'data.csv' },
-    { name: 'Gingerbread', calories: 356, fat: 16.0, carbs: 49, proteinFile: 'data.csv' },
-    { name: 'Jelly bean', calories: 375, fat: 0.0, carbs: 94, proteinFile: 'data.csv' },
-    { name: 'Lollipop', calories: 392, fat: 0.2, carbs: 98, proteinFile: 'data.csv' },
-    { name: 'Honeycomb', calories: 408, fat: 3.2, carbs: 87, proteinFile: 'data.csv' },
-    { name: 'Donut', calories: 452, fat: 25.0, carbs: 51, proteinFile: 'data.csv' },
-    { name: 'KitKat', calories: 518, fat: 26.0, carbs: 65, proteinFile: 'data.csv' },
-  ];
-};
-
 const editItem = (item) => {
   editedIndex.value = desserts.value.indexOf(item);
   editedItem.value = Object.assign({}, item);
+  console.log(editedItem.value);
+
+  // Debugging statements
+  console.log('Item being edited:', item);
+  console.log('Item ID:', item._id);
+
   dialog.value = true;
 };
 
@@ -173,10 +157,11 @@ const deleteItem = (item) => {
   dialogDelete.value = true;
 };
 
-const deleteItemConfirm = () => {
-  desserts.value.splice(editedIndex.value, 1);
-  closeDelete();
-};
+// const deleteItemConfirm = () => {
+//   desserts.value.splice(editedIndex.value, 1);
+//   console.log(desserts.value[editedIndex.value]._id)
+//   closeDelete();
+// };
 
 const close = () => {
   dialog.value = false;
@@ -194,16 +179,131 @@ const closeDelete = () => {
   });
 };
 
-const save = () => {
-  if (editedIndex.value > -1) {
-    Object.assign(desserts.value[editedIndex.value], editedItem.value);
-  } else {
-    desserts.value.push(editedItem.value);
+
+/**
+ * Function to fetch desserts data from the API.
+ * This function performs an asynchronous request to retrieve a list of desserts from the server.
+ * Upon receiving a successful response (status 200), it logs the response data and updates the `desserts` state variable.
+ * If the response status indicates an error, it logs the status code.
+ * If the request fails, it logs the error.
+ *
+ * @param {none}
+ * @returns {void}
+ */
+const fetchDesserts = async () => {
+  const done = (res) => {
+    if (res?.status === 200) {
+      console.log('Response Data:', res.data); // Log response data
+      desserts.value = res.data;
+      console.log('Desserts:', desserts.value); // Log desserts to check their structure
+    } else {
+      console.log('Error fetching data:', res.status);
+    }
+  };
+
+  try {
+    await API.get('/api/files_pipeline', done);
+  } catch (err) {
+    console.error('API error:', err);
   }
-  close();
 };
 
-initialize();
+
+/**
+ * Function to save or update an item.
+ * This function constructs a FormData object with the fields from `editedItem`, 
+ * determining if it should make a POST or PUT request based on whether an item is being edited or created.
+ * It then sends the FormData object to the appropriate API endpoint.
+ * Upon receiving a successful response, it updates the `desserts` state variable and closes the dialog.
+ * If the response indicates an error, it logs an appropriate error message.
+ *
+ * @param {none}
+ * @returns {void}
+ */
+const save = () => {
+  const endpoint =
+    editedIndex.value > -1 ? `/api/files_pipelines/${desserts.value[editedIndex.value]._id}` : '/api/files_pipeline';
+  // const method = editedIndex.value > -1 ? 'put' : 'post';
+  const method = 'post';
+  // Create a new FormData object
+  const formData = new FormData();
+  // Append non-file fields
+  for (const key in editedItem.value) {
+    if (editedItem.value.hasOwnProperty(key)) {
+      if (key === 'file') {
+        formData.append(key, editedItem.value[key][0]);
+      } else if (Array.isArray(editedItem.value[key])) {
+        // Handle file(s) in the array
+        editedItem.value[key].forEach((file, index) => {
+          formData.append(`${key}[${index}]`, file);
+        });
+      } else {
+        formData.append(key, editedItem.value[key]);
+      }
+    }
+  }
+
+  // Log FormData content for debugging
+  for (const [key, value] of formData.entries()) {
+    console.log(`${key}:`, value);
+  }
+
+  const done = (res) => {
+    if (res.status === (editedIndex.value > -1 ? 200 : 201)) {
+      if (editedIndex.value > -1) {
+        Object.assign(desserts.value[editedIndex.value], editedItem.value);
+      } else {
+        desserts.value.push(res.data);
+      }
+      close();
+    } else {
+      console.error(`Error ${method === 'post' ? 'adding' : 'updating'} item:`, res.status);
+    }
+  };
+
+  // Make the API request
+  API[method](endpoint, done, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+
+  dialog.value = false;
+};
+
+/**
+ * Function to confirm and delete an item.
+ * This function performs an asynchronous request to delete an item from the server.
+ * Upon receiving a successful response (status 200), it removes the item from the local `desserts` array
+ * and closes the delete confirmation dialog.
+ * If the response indicates an error or if the request fails, it logs an appropriate error message.
+ *
+ * @param {none}
+ * @returns {void}
+ */
+const deleteItemConfirm = async () => {
+  const itemId = desserts.value[editedIndex.value]._id;
+
+  const done = (res) => {
+    if (res.status === 200) {
+      // Remove the item from the local array after successful deletion
+      desserts.value.splice(editedIndex.value, 1);
+      closeDelete();
+    } else {
+      console.error('Error deleting item:', res.status);
+    }
+  };
+
+  try {
+    await API.delete(`/api/files_pipeline/${itemId}`, done);
+  } catch (err) {
+    console.error('API error:', err);
+  }
+};
+
+
+// call this method
+fetchDesserts();
 </script>
 
 <style scoped>

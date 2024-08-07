@@ -24,7 +24,7 @@
             rounded="lg"
             text="Add"
             variant="flat"
-            @click="isActive.value = false"
+            @click="createWorkspace"
           ></v-btn>
         </v-card-actions>
       </v-card>
@@ -33,38 +33,10 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, ref, watch } from 'vue';
+import { storeToRefs } from 'pinia';
+import { useWorkspaceAddStore } from '@/store/modules/workspace-show.js';
 
-// Define a reactive variable for the input value
-const inputValue = ref('');
-
-// Define a reactive variable to control the save button's enabled state
-const isSaveButtonEnabled = ref(false);
-
-// Define emit for closeDialog event
-const emit = defineEmits(['closeDailog']);
-
-// Define props for the component
-const props = defineProps({
-  opendailoge: Boolean,
-});
-
-/**
- * Function to emit the closeDialog event
- 
- * @param {none}
- * @returns {void}
- */
-function closeDailog() {
-  emit('closeDailog');
-}
-
-/**
- * Watcher to enable the save button if the input value is not empty
- * @param {string} newValue - The new value of inputValue
- * @returns {void}
- */
-watch(inputValue, (newValue) => {
-  isSaveButtonEnabled.value = newValue.trim().length > 0;
-});
+const workspaceAddStore = useWorkspaceAddStore();
+const { opendailoge, inputValue, isSaveButtonEnabled } = storeToRefs(workspaceAddStore);
+const { closeDailog, createWorkspace } = workspaceAddStore;
 </script>

@@ -1,11 +1,11 @@
 <template>
-  <v-navigation-drawer permanent>
+  <v-navigation-drawer permanent width="250">
     <v-list class="my-10">
       <v-list-item
         v-for="item in items"
         :key="item.title"
-        class="d-flex align-center mx-4 my-4"
-        @click="selectedItem = item.title"
+        class="d-flex align-center mx-2 my-4"
+        @click="setSelectedItem(item.title)"
         :class="{ 'v-list-item--active': selectedItem === item.title }"
       >
         <v-list-item-icon>
@@ -17,51 +17,33 @@
       </v-list-item>
     </v-list>
   </v-navigation-drawer>
-  <!-- <v-responsive>
-    <div> 
-  <div class="text-h5">
-    {{ selectedItem }}
-  </div> -->
-  <component :is="selectedComponent" />
-  <!-- </div>
-  </v-responsive> -->
+  <div class="mt-14 mx-16">
+    <component :is="selectedComponent" />
+  </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
-import UserProfile from './SidebarSettingsProfile.vue';
-import SecuritySettings from './SidebarSettingsSecurity.vue';
-import SettingsWorkspace from './SidebarSettingsWorkspace.vue';
+import { useSettingsStore } from '@/store/modules/settings.js';
+import { storeToRefs } from 'pinia';
 
-// Define an array of items for the menu
-const items = [
-  { title: 'Profile', icon: 'mdi-account-circle' },
-  { title: 'Security', icon: 'mdi-shield-account' },
-  { title: 'Applications', icon: 'mdi-apps' },
-  { title: 'Workspace', icon: 'mdi-account-group' },
-];
+// Initialize the Pinia store instance
+const settingsStore = useSettingsStore();
 
-// Define a reactive variable for the selected item
-const selectedItem = ref('Profile');
+// Destructure reactive properties from the store and convert them to refs for reactivity
+const { selectedItem, selectedComponent } = storeToRefs(settingsStore);
+
+// non-reactive, no need for storeToRefs
+const items = settingsStore.items;
 
 /**
- * Computed property to return the component based on the selected item
-
- * @param {none}
- * @returns {object|null} - Returns the corresponding component or null if no match
+ * Updates the selected item in the store.
+ *
+ * @param {string} item - The title of the item to be selected.
+ * @returns {void}
  */
-const selectedComponent = computed(() => {
-  switch (selectedItem.value) {
-    case 'Profile':
-      return UserProfile;
-    case 'Security':
-      return SecuritySettings;
-    case 'Workspace':
-      return SettingsWorkspace;
-    default:
-      return null;
-  }
-});
+const setSelectedItem = (item) => {
+  settingsStore.selectedItem = item;
+};
 </script>
 
 <style scoped>
