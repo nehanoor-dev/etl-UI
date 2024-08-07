@@ -17,9 +17,22 @@ import ExistingDestiination from './components/DataPipeline/NewPipeline/Destinat
 import Loader from './components/DataPipeline/NewPipeline/Configuration/Loader.vue';
 import Setup from './components/DataPipeline/BulkPipeline/Setup.vue';
 
+
+
+import WebScrapPipeline from './components/SubComponents/WebScrapPipeline.vue'
+
+import BulkPipelines from './components/SubComponents/BulkPipelines.vue'
+
+
+
+
 const routes = [
   { path: '/dashboard', component: Dashboard },
   { path: '/settings', component: Settings },
+
+{ path: '/', component: Dashboard },
+
+{ path: '/webscrappipeline', component: WebScrapPipeline },
 
   { path: '/FileInstructions', component: FileInstructions },
   { path: '/pipelines', component: Pipeline },
@@ -65,9 +78,13 @@ const routes = [
   },
 ];
 
+
 const router = createRouter({
   history: createWebHistory(),
   routes,
 });
 
-export default router;
+
+
+
+export default router
