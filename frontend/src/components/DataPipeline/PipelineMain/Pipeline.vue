@@ -1,8 +1,7 @@
 <template>
-
+    
     <Top></Top>
     <BottomContainer></BottomContainer>
-
 
 </template>
 
