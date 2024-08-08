@@ -7,15 +7,9 @@
       :table-list="sourcesData"
       @update-selected="updateSelectedSources"
     />
-
-    <div class="my-2">
-      <p class="heading"> Select Destination</p>
-    </div>
-
-    <v-row justify="end">
-      <v-btn @click="BulkPipeline" class="custom-button" elevation="2" size="large" rounded="lg">
-        <v-icon left>mdi-plus</v-icon>
-        BulkPipeline Connection
+    <v-row align="end">
+      <v-btn @click="sendSelectedSources">
+        Next
       </v-btn>
     </v-row>
   </v-container>
@@ -30,48 +24,28 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 const store = useStore();
-
-onBeforeMount(() => {
-  store.dispatch('fetchSources');
-  store.dispatch('fetchDestinations')
-});
-
-const selectedSources = ref([]);
-
-const updateSelectedSources = (newSelectedSources) => {
-  selectedSources.value = newSelectedSources;
-  console.log(selectedSources.value);
-};
+const emit = defineEmits(['source-selected']);
 
 const sources = computed(() => store.state.source.sources || []);
+const selectedSources = ref([])
 
-const sourcesData = computed(() => 
-  (sources.value || []).map(source => ({
-    name: source.name,
-    connector: source.connector,
-    image:"",
-    connections: source.connections,
-    selected: false,
-  }))
+const sourcesData = computed(() =>
+    (sources.value || []).map(source => ({
+        id: source._id,
+        name: source.name,
+        connector: source.name,
+        image: source.image,
+        lastUpdated: source.updated_at,
+    }))
 );
 
-const destinations = [
-            {
-                name: "myDestination",
-                connector: {name:"MyConnector", image:""},
-                connectionCount: "0 connections",
-            },
-            {
-                name: "myDestination",
-                connector: {name:"MyConnector", image:""},
-                connectionCount: "6 connections",
-            },
-        ];
+const updateSelectedSources = (sources) =>{
+    selectedSources.value=sources;
+}
 
-        const BulkPipeline = () => {
-          
-  router.push('/bulkconfig');
-};
+const sendSelectedSources = (sources) =>{
+  emit('source-selected', selectedSources.value);
+}
 
 
 </script>
