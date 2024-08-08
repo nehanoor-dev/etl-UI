@@ -1,25 +1,26 @@
 <template>
     <v-container>
         <v-row justify="end">
-            <v-btn @click="addDestination" elevation="1" size="small" rounded="lg" class="pa-2">
+            <v-btn @click="addDestination" elevation="1" style="font-size: 12px; color: #023c83; font-weight: bolder;"
+            size="large" rounded="lg" class="">
                 <v-icon left>mdi-plus</v-icon>
                 Want to add a destination?
             </v-btn>
         </v-row>
         <v-row>
             <v-container>
-                <v-data-table :items="destinationsData" :search="search" hide-default-header>
+                <v-data-table :items="destinationsData" :search="search" hide-default-header hide-default-footer>
                     <template v-slot:top>
                         <v-row class="align-center pa-2" justify="space-between">
-                            <v-col sm="3" lg="3" class="justify-end">
+                            <v-col>
                                 <v-text-field v-model="search" label="Search" prepend-inner-icon="mdi-magnify"
-                                    variant="outlined" hide-details class="custom-search-bar"></v-text-field>
+                                    variant="outlined" hide-details class="custom-search-bar ma-10"></v-text-field>
                             </v-col>
                         </v-row>
                     </template>
 
                     <template v-slot:item="{ item }">
-                        <tr @click="selectDestination(item.id)">
+                        <tr @click="selectDestination(item.id)" class="hover">
                             <td>
                                 <v-row class="align-center no-gutters">
                                     <v-col cols="3">
@@ -92,3 +93,10 @@ const search = ref('');
 
 
 </script>
+<style scoped>
+  .hover:hover {
+        background-color: #ecebff;
+        transition: .3s;
+        cursor: pointer;
+    }
+</style>

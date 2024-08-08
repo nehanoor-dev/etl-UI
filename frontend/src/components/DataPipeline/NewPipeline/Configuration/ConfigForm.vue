@@ -1,7 +1,7 @@
 <template>
-    <v-row class="custom-style justify-center pa-5">
+    <v-row justify="center" class="custom-style justify-center pa-5">
 
-    <v-col cols="12" lg="5" md="5" class="mt-5">
+    <v-col  class="ma-10">
         <v-row>
             <v-col>
                 <p class="headingFont">Connection Name</p>
@@ -11,23 +11,24 @@
         </v-row>
         <v-row>
             <v-col>
-                <p class="headingFont">Replication Frequency</p>
-                <span class="font">How often your data will sync to your destinaiton</span>
-            </v-col>
-            <v-text-field v-model=frequency variant="outlined" width="40px" ></v-text-field>
-        </v-row>
-        <v-row>
-            <v-col>
                 <p class="headingFont">Schedule Type</p>
                 <span class="font">How you want your sync to be triggered?</span>
             </v-col>
             <v-select v-model="selectedScheduleType" :items=scheduleType width="40px" variant="outlined"></v-select>
         </v-row>
+        <v-row>
+            <v-col>
+                <p class="headingFont">Replication Frequency</p>
+                <span class="font">How often your data will sync to your destinaiton</span>
+            </v-col>
+            <v-text-field v-model=frequency variant="outlined" width="40px" ></v-text-field>
+        </v-row>
+       
+        <v-row class="mt-10" justify="end">
+            <v-btn @click="syncing" color="primary"  >Finish & Sync</v-btn>
+        </v-row>
         </v-col>
 
-        <v-col cols="12" lg="5" md="5" class="pa-5">
-            <v-btn @click="syncing" color="primary" >Finish & Sync</v-btn>
-        </v-col>
     </v-row>
 
 </template>
@@ -65,9 +66,7 @@ const syncing = ()=> {
 
 </script>
 <style scoped>
-.custom-style {
-    column-gap: 100px;
- }
+
 .radioBorder {
     border: 1px solid grey;
     height: 100px;

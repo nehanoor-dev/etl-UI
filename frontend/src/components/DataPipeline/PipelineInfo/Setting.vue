@@ -72,6 +72,7 @@ console.log(props.scheduleType)
 console.log(props.frequency)
 
 
+
 const scheduleTypes = ['Scheduled', 'Manual', 'Cron'];
 const replicationFrequencies = ['Every hour', 'Every 2 hour', 'Every 6 hours', 'Every 8 hour', 'Every 12 hours', 'Every 24 hours'];
 
@@ -84,7 +85,13 @@ console.log(scheduleTypes[0])
 const saveChanges = () => {
     // Your save logic here
     console.log(connectionName.value);
-    store.dispatch('saveChanges',props.id,connectionName.value,scheduleType1, replicationFrequency )
+    const payload = {
+        id: props.id,
+        connectionName:connectionName.value,
+        scheduleType1:scheduleType1.value,
+        replicationFrequency:replicationFrequency.value,
+      };
+    store.dispatch('saveChanges',payload )
     // console.log('Changes saved:', {
     //     connectionName: connectionName.value,
     //     scheduleType: scheduleType.value,

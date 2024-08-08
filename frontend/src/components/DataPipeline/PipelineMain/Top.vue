@@ -7,9 +7,7 @@
                     Connections
                 </v-row>
                 <v-row>
-                    <p class="mr-1 text-success " v-if="healthy > 0"> Healthy {{ healthy }}</p>
-                    <p class="text-error mr-1" v-if="inactive > 0"> Inactive {{ inactive }}</p>
-                    <p style="color: #535461" v-if="paused > 0"> Paused {{ paused }} </p>
+                 
                 </v-row>
             </v-col>
 
@@ -48,4 +46,5 @@ const Newpipeline = () => {
 p {
     font-size: 14px;
 }
+
 </style>

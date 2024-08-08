@@ -105,25 +105,27 @@ export default createStore({
         console.error('Error deleting pipeline:', error);
       }
     },
-    async saveChanges({ commit }, pipelineId, connectionName, scheduleType, replicationFrequency) {
-      console.log(connectionName);
-      const payload = {
-        connectionName: connectionName.value,
-        scheduleType: scheduleType.value,
-        replicationFrequency: replicationFrequency.value,
-      };
+    async saveChanges({ commit, state }, payload) {
+      console.log('Payload:', payload);
+      const data={
+        name: payload.connectionName,
+        scheduleType: payload.scheduleType1,  
+        frequency: payload.replicationFrequency,
+      }
+      console.log(data)
       try {
-        const response = await axios.put('http://10.0.52.179:8081/api/connections/66b0ef1302f04cf3ff04bdf8', payload, {
+        const response = await axios.put(`http://10.0.52.179:8081/api/connections/${payload.id}`,data , {
           headers: {
-            'Authorization': `Bearer ${state.token}` // Include token in request headers
+            'Authorization': `Bearer ${state.token}`
           }
         });
         console.log('Changes saved:', response.data);
-        commit('updatePipeline', pipelineId);
+        commit('updatePipeline');
       } catch (error) {
-        console.error('Error saving changes:', error);
+        console.error('Error saving changes:', error.response.data); // Detailed error information
       }
     },
+    
     async getFilters({ commit, state }) {
       const params = new URLSearchParams();
       console.log('Filters before request:', { statuses, schedule_type, source_connector, destination_connector });

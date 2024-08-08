@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
-    <v-stepper v-model="step" :items="items" :hide-actions="true">
-      <template v-slot:item.1>
+    <v-stepper v-model="step" :items="items" :hide-actions="true" class="custom-stepper">
+       <template v-slot:item.1>
         <Source @source-selected="handleSourceSelected" />
       </template>
       <template v-slot:item.2>
@@ -9,8 +9,8 @@
       </template>
       <template v-slot:item.3>
         <ConfigMain
-        :source-id="selectedSource"
-        :destination-id="selectedDestination"
+          :source-id="selectedSource"
+          :destination-id="selectedDestination"
         >
         </ConfigMain>
       </template>
@@ -41,3 +41,29 @@ const handleDestinationSelected = (destination) => {
   step.value = 3;
 };
 </script>
+
+<style scoped>
+.custom-stepper {
+  box-shadow: none !important;
+}
+
+.v-stepper__header {
+  border: none !important;
+  box-shadow: none !important;
+  background-color: blue !important; /* Change to desired color */
+  color: white; /* Optional: Change text color */
+}
+
+.v-stepper__step {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.v-stepper__step--active {
+  border: none !important;
+  box-shadow: none !important;
+}
+.v-stepper-item--selected .v-stepper-item__avatar.v-avatar, .v-stepper-item--complete .v-stepper-item__avatar.v-avatar {
+    background: blue !important;
+}
+</style>

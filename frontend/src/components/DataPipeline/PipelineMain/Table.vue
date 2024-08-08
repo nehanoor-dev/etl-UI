@@ -14,7 +14,7 @@
     </template>
 
     <template v-slot:item="{ item }">
-      <tr @click="navigateToDetail(item)">
+      <tr  @click="navigateToDetail(item)" class="hover">
         <td>
           <v-icon class="mr-3 rounded-icon" :style="{ color: 'white', backgroundColor: '#329C47' }">
             {{ getStatusIcon(item.status) }}
@@ -168,4 +168,9 @@ watch(() => store.state.filters, () => {
   border-radius: 50%;
   padding: 12px;
 }
+.hover:hover {
+        background-color: #ecebff;
+        transition: .3s;
+        cursor: pointer;
+    }
 </style>

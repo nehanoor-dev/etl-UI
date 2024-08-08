@@ -18,9 +18,9 @@ const newPipeline = () => {
 <style scoped>
 
 .custom-button {
-  background-color:#023c83;
-  color: white;
-  font-size: 10px;
+  background-color: white;
+  color: #023c83;
+  font-size: 13px;
   text-transform: capitalize;
   }
 
@@ -28,8 +28,8 @@ const newPipeline = () => {
     margin-right: 12px;
   }
 
-  .custom-button:hover {
+  /* .custom-button:hover {
     background-color:#023c83;
     color: white;
-  }
+  } */
 </style>
