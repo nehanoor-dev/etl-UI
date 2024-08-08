@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid >
+    <v-container fluid>
         <v-row class="fill-height" align="center" justify="space-between">
             <!-- Left Side -->
             <v-col cols='6' class="ml-2">
@@ -10,14 +10,14 @@
 
             <!-- Right Side -->
             <v-col class="d-flex justify-end">
-                <v-btn @click="goToMutilpleSourceStepper"  elevation="2" size="large" rounded="lg">
+                <v-btn @click="goToMutilpleSourceStepper" elevation="2" size="large" rounded="lg">
                     <v-icon left>mdi-plus</v-icon>
                     Multiple Source ?
                 </v-btn>
             </v-col>
 
             <v-col class="d-flex justify-end">
-                <v-btn @click="newPipeline"  elevation="2" size="large" rounded="lg">
+                <v-btn @click="newPipeline" elevation="2" size="large" rounded="lg">
                     <v-icon left>mdi-plus</v-icon>
                     Multiple Destination ?
                 </v-btn>
@@ -35,8 +35,8 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 
 const goToMutilpleSourceStepper = () => {
-      router.push({ name: 'NewSourceBulk' });
-    };
+    router.push({ name: 'NewSourceBulk' });
+};
 
 </script>
 

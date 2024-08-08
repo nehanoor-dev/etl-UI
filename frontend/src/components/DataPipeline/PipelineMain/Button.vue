@@ -1,35 +1,31 @@
 <template>
-    <v-btn @click="newPipeline" class="custom-button" elevation="2" size="large" rounded="lg">
-        <v-icon left>mdi-plus</v-icon>
-        New Connection
-    </v-btn>
+  <!-- Button to navigate to the 'newpipeline' route -->
+  <v-btn @click="newPipeline" class="custom-button" elevation="2" size="large" rounded="lg">
+    <v-icon left>mdi-plus</v-icon>
+    New Connection
+  </v-btn>
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
+import { useRouter } from 'vue-router'; 
+const router = useRouter(); 
 
 const newPipeline = () => {
-  router.push('/newpipeline');
+  router.push('/newpipeline');  
 };
 </script>
 
 <style scoped>
-
+/* Custom styling for the button */
 .custom-button {
-  background-color: white;
-  color: #023c83;
-  font-size: 13px;
-  text-transform: capitalize;
-  }
+  background-color: white;  /* White background color */
+  color: #023c83;           /* Dark blue text color */
+  font-size: 13px;          /* Font size of 13px */
+  text-transform: capitalize; /* Capitalize button text */
+}
 
-  .custom-button .v-icon {
-    margin-right: 12px;
-  }
-
-  /* .custom-button:hover {
-    background-color:#023c83;
-    color: white;
-  } */
+/* Custom styling for the icon within the button */
+.custom-button .v-icon {
+  margin-right: 12px;  /* Add space between the icon and the text */
+}
 </style>

@@ -101,7 +101,6 @@
   
   const cancelChanges = () => {
     console.log('Changes canceled');
-    emit('dialog', false);
   };
   
   const confirmDelete = () => {
@@ -115,7 +114,6 @@
   const showDeleteDialog = () => {
   console.log('Delete dialog triggered'); // Add this for debugging
   showDelete.value = true;
-//   emit('dialog', false);
 };
   </script>
   

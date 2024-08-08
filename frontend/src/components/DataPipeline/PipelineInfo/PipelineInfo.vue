@@ -22,12 +22,6 @@
   const store = useStore();
   const id = ref(route.params.id);
 
-//   // Fetch the pipelines if not already loaded
-// onMounted(async () => {
-//   if (!pipeline.value) {
-//     await store.dispatch('fetchPipelines');
-//   }
-// });
   </script>
   
   <style>

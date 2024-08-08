@@ -1,18 +1,23 @@
 <template>
   <v-container fluid>
+    <!-- Stepper component for multi-step process -->
     <v-stepper v-model="step" :items="items" :hide-actions="true" class="custom-stepper">
-       <template v-slot:item.1>
+      <!-- Step 1: Source selection -->
+      <template v-slot:item.1>
         <Source @source-selected="handleSourceSelected" />
       </template>
+
+      <!-- Step 2: Destination selection -->
       <template v-slot:item.2>
         <Destination @destination-selected="handleDestinationSelected" />
       </template>
+
+      <!-- Step 3: Configuration -->
       <template v-slot:item.3>
         <ConfigMain
           :source-id="selectedSource"
           :destination-id="selectedDestination"
-        >
-        </ConfigMain>
+        />
       </template>
     </v-stepper>
   </v-container>
@@ -23,30 +28,32 @@ import { ref } from 'vue';
 import Source from './source/Source.vue';
 import Destination from './Destination/Destination.vue';
 import ConfigMain from './Configuration/ConfigForm.vue';
-import { useRoute } from 'vue-router';
 
-const route = useRoute();
-const step = ref(1);
-const items = ref(['Define Source', 'Define Destination', 'Configure Pipeline']);
-const selectedSource = ref(null);
-const selectedDestination = ref(null);
+const step = ref(1); // Current step in the stepper
+const items = ref(['Define Source', 'Define Destination', 'Configure Pipeline']); // Step names
+const selectedSource = ref(null); // Selected source ID
+const selectedDestination = ref(null); // Selected destination ID
 
+// Handler for when a source is selected
 const handleSourceSelected = (source) => {
   selectedSource.value = source;
-  step.value = 2;
+  step.value = 2; // Move to the next step
 };
 
+// Handler for when a destination is selected
 const handleDestinationSelected = (destination) => {
   selectedDestination.value = destination;
-  step.value = 3;
+  step.value = 3; // Move to the final step
 };
 </script>
 
 <style scoped>
+/* Custom styles for the stepper component */
 .custom-stepper {
   box-shadow: none !important;
 }
 
+/* Remove default styling and apply custom colors */
 .v-stepper__header {
   border: none !important;
   box-shadow: none !important;
@@ -63,7 +70,9 @@ const handleDestinationSelected = (destination) => {
   border: none !important;
   box-shadow: none !important;
 }
-.v-stepper-item--selected .v-stepper-item__avatar.v-avatar, .v-stepper-item--complete .v-stepper-item__avatar.v-avatar {
-    background: blue !important;
+
+.v-stepper-item--selected .v-stepper-item__avatar.v-avatar, 
+.v-stepper-item--complete .v-stepper-item__avatar.v-avatar {
+  background: blue !important; /* Change to desired color */
 }
 </style>

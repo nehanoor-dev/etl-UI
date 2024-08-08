@@ -1,58 +1,60 @@
+// Importing necessary modules and dependencies
 import { createStore } from "vuex";
 import axios from "axios";
 import createPersistedState from "vuex-persistedstate";
 import source from "./sources";
 import destination from "./destination";
 
+// Vuex store setup
 export default createStore({
   state: {
-    pipelines: [],
-    token: "66b30f1c02f04cf3ff04be0b|Apk0xtGOT3EeuneNytaQ80Ps76Ncl4gxzXX6lYJuf95822b3",
-    jobHistory: [],
-    sources: [],
+    pipelines: [],               // Array to hold pipeline data
+    token: "66b30f1c02f04cf3ff04be0b|Apk0xtGOT3EeuneNytaQ80Ps76Ncl4gxzXX6lYJuf95822b3", // Authorization token for API requests
+    jobHistory: [],              // Array to hold job history data
+    sources: [],                 // Array to hold source data
   },
   mutations: {
+    // Mutations to update the state
     getPipeLines(state, response) {
-      state.pipelines = response;
+      state.pipelines = response; // Set pipelines data from API response
     },
     setJobHistory(state, response) {
-      state.jobHistory = response;
+      state.jobHistory = response; // Set job history data from API response
     },
     removePipeline(state, pipelineId) {
-      state.pipelines = state.pipelines.filter(pipeline => pipeline.id !== pipelineId);
+      state.pipelines = state.pipelines.filter(pipeline => pipeline.id !== pipelineId); // Remove pipeline by ID
     },
     updatePipeline(state, pipelineId) {
-      state.pipelines = state.pipelines.filter(pipeline => pipeline.id !== pipelineId);
+      state.pipelines = state.pipelines.filter(pipeline => pipeline.id !== pipelineId); // Update pipeline by ID
     },
     updateStatus(state, pipelineId) {
-      state.pipelines = state.pipelines.filter(pipeline => pipeline.id !== pipelineId);
+      state.pipelines = state.pipelines.filter(pipeline => pipeline.id !== pipelineId); // Update status of a specific pipeline
     },
     setPipelines(state, pipelines) {
-      state.pipelines = pipelines;
+      state.pipelines = pipelines; // Set pipelines data
     },
     setFilters(state, filters) {
-      state.filters = filters;
+      state.filters = filters; // Set filters for pipeline filtering
     },
     setSource(state, source) {
-      state.selectedSource = source;
+      state.selectedSource = source; // Set selected source
     },
     setDestination(state, destination) {
-      state.selectedDestination = destination;
+      state.selectedDestination = destination; // Set selected destination
     }
   },
   actions: {
-    async createPipelines({ commit , state}, data) {
-      
+    // Actions to handle asynchronous operations
+    async createPipelines({ commit, state }, data) {
       try {
-       const response = await axios.post('http://10.0.52.179:8081/api/connections' , data,
-        {
-        headers: {
-          'Authorization': `Bearer ${state.token}` // Include token in request headers
-        }
-      });
-      console.log(response.status)
+        const response = await axios.post('http://10.0.52.179:8081/api/connections', data, {
+          headers: {
+            'Authorization': `Bearer ${state.token}` // Include token in request headers
+          }
+        });
+        console.log(response.status); // Log response status for debugging
       } catch (error) {
-        console.error('Error fetching pipelines:', error);
+        console.error('Error fetching pipelines:', error); // Log error details
       }
     },
     async fetchPipelines({ commit, state }) {
@@ -63,28 +65,27 @@ export default createStore({
           }
         });
         console.log("Hello");
-        console.log(response.data);
-        commit('getPipeLines', response.data);
+        console.log(response.data); // Log response data for debugging
+        commit('getPipeLines', response.data); // Commit response data to state
       } catch (error) {
-        console.error('Error fetching pipelines:', error);
+        console.error('Error fetching pipelines:', error); // Log error details
       }
     },
     async fetchSource({ commit, state }, pipelineId) {
       try {
         // Assume updateSource is an existing function. If not, it should be defined or removed.
         updateSource({ commit }, source);
-        commit('setSource', source);
+        commit('setSource', source); // Commit the source data to state
       } catch (err) {
-        console.log("Fetching Source error", err);
+        console.log("Fetching Source error", err); // Log error details
       }
     },
     async fetchDestination({ commit }) {
       try {
-        // Assume updateDestination is an existing function. If not, it should be defined or removed.
         updateDestination({ commit }, destination);
-        commit('setDestination', destination);
+        commit('setDestination', destination); // Commit the destination data to state
       } catch (err) {
-        console.log("Fetching Destination", err);
+        console.log("Fetching Destination", err); // Log error details
       }
     },
     async fetchJobHistory({ commit, state }, id) {
@@ -94,110 +95,101 @@ export default createStore({
             'Authorization': `Bearer ${state.token}` // Include token in request headers
           }
         });
-        console.log(response.data);
-        //  const response= [
-        //     {
-        //     "end_time": "2024-08-03T10:47:00Z",
-        //     "result": "Success",
-        //     "size": "50 MB",
-        //     "rowsLoaded": "3000",
-        //     "rowsExtracted": "3000",
-        //     "timeTaken": "-176400 seconds"
-        //     }
-        // ]
-        commit('setJobHistory', response.data);
+        console.log(response.data); // Log response data for debugging
+        commit('setJobHistory', response.data); // Commit job history data to state
       } catch (error) {
-        console.error(`Error fetching job history for pipeline ${id}:`, error);
+        console.error(`Error fetching job history for pipeline ${id}:`, error); // Log error details
       }
     },
     async deletePipeline({ commit, state }, pipelineId) {
       try {
         //console.log(id)
-        await axios.delete(`http://10.0.52.179:8081/api/connection/${pipelineId}`, {
+        await axios.delete(`http://10.0.52.179:8081/api/connections/${pipelineId}`, {
           headers: {
             'Authorization': `Bearer ${state.token}` // Include token in request headers
           }
         });
-        commit('removePipeline', pipelineId);
+        commit('removePipeline', pipelineId); // Commit pipeline removal to state
       } catch (error) {
-        console.error('Error deleting pipeline:', error);
+        console.error('Error deleting pipeline:', error); // Log error details
       }
     },
     async saveChanges({ commit, state }, payload) {
-      console.log('Payload:', payload);
+      console.log('Payload:', payload); // Log payload for debugging
       
       try {
-        const response = await axios.put(`http://10.0.52.179:8081/api/connections/${payload.id}`,payload, {
+        const response = await axios.put(`http://10.0.52.179:8081/api/connections/${payload.id}`, payload, {
           headers: {
-            'Authorization': `Bearer ${state.token}`
+            'Authorization': `Bearer ${state.token}` // Include token in request headers
           }
         });
-        console.log('Changes saved:', response.data);
+        console.log('Changes saved:', response.data); // Log saved changes for debugging
         commit('updatePipeline');
-        commit('updateStatus')
+        commit('updateStatus');
       } catch (error) {
-        console.error('Error saving changes:', error.response.data); // Detailed error information
+        console.error('Error saving changes:', error.response.data); // Log detailed error information
       }
     },
     
     async getFilters({ commit, state }) {
       const params = new URLSearchParams();
-      console.log('Filters before request:', { statuses, schedule_type, source_connector, destination_connector });
+      console.log('Filters before request:', { statuses, schedule_type, source_connector, destination_connector }); // Log filters for debugging
 
       const { statuses, schedule_type, source_connector, destination_connector } = state.filters;
 
+      // Append filter parameters to the request
       if (statuses) params.append('status', statuses);
       if (schedule_type) params.append('scheduleType', schedule_type);
-      if (source_connector) params.append('source',source_connector);
+      if (source_connector) params.append('source', source_connector);
       if (destination_connector) params.append('destination', destination_connector);
 
       try {
         const response = await axios.get(`http://10.0.52.179:8081/api/filter-connections?${params.toString()}`, {
           headers: {
-            'Authorization': `Bearer ${state.token}`
+            'Authorization': `Bearer ${state.token}` // Include token in request headers
           }
         });
-        commit('setPipelines', response.data);
-        console.log("Filters")
+        commit('setPipelines', response.data); // Commit filtered data to state
+        console.log("Filters"); // Log success message
       } catch (err) {
-        console.log('Error during filters', err);
+        console.log('Error during filters', err); // Log error details
       }
     },
     setFilters({ commit, dispatch }, filters) {
-      commit('setFilters', filters);
-      dispatch('getFilters');
+      commit('setFilters', filters); // Commit filters to state
+      dispatch('getFilters');        // Fetch filtered pipelines
     },
   },
   getters: {
+    // Getter functions to retrieve specific data from the state
     getPipelineById: (state) => (id) => {
-      return state.pipelines.find(pipeline => pipeline.id === id);
+      return state.pipelines.find(pipeline => pipeline.id === id); // Return a specific pipeline by ID
     },
     getJobHistory: (state) => {
-      return state.jobHistory;
+      return state.jobHistory; // Return job history data
     },
     allSources: (state) => {
       const sources = new Set();
       state.pipelines.forEach(pipeline => {
         if (pipeline.source_connector) {
-          sources.add(pipeline.source_connector.name);
+          sources.add(pipeline.source_connector.name); // Add unique sources to the set
         }
       });
-      return Array.from(sources);
+      return Array.from(sources); // Convert set to array and return
     },
     allDestinations: (state) => {
       const destinations = new Set();
       state.pipelines.forEach(pipeline => {
         if (pipeline.destination_connector) {
-          destinations.add(pipeline.destination_connector.name);
+          destinations.add(pipeline.destination_connector.name); // Add unique destinations to the set
         }
       });
-      return Array.from(destinations);
+      return Array.from(destinations); // Convert set to array and return
     }
-
   },
-  plugins: [createPersistedState()],
+  plugins: [createPersistedState()], // Persist state across page reloads using a plugin
   modules: {
-    source,
-    destination,
+    source,       // Module for managing sources
+    destination,  // Module for managing destinations
   }
 });

@@ -4,16 +4,16 @@
         <v-col lg="8" md="10" sm="12">
           <v-row>
             <v-col>
-              <AllDropdown :drop-down-list="Statuses" v-model="Statuses" @change="applyFilters" label="Status"></AllDropdown>
+              <AllDropdown :drop-down-list="Statuses" :applyFilters="applyFilters" v-model="Statuses" @input="applyFilters" label="Status"></AllDropdown>
             </v-col>
             <v-col>
-              <AllDropdown :drop-down-list="scheduleTypes" v-model="scheduleTypes" @change="applyFilters" label="Schedule Type"></AllDropdown>
+              <AllDropdown :drop-down-list="scheduleTypes" :applyFilters="applyFilters" v-model="scheduleTypes" @input="applyFilters" label="Schedule Type"></AllDropdown>
             </v-col>
             <v-col>
-              <AllDropdown :drop-down-list="sources" v-model="selectedSource" @change="applyFilters" label="Source"></AllDropdown>
+              <AllDropdown :drop-down-list="sources" :applyFilters="applyFilters" v-model="selectedSource" @input="applyFilters" label="Source"></AllDropdown>
             </v-col>
             <v-col>
-              <AllDropdown :drop-down-list="destinations" v-model="selectedDestination" @change="applyFilters" label="Destination"></AllDropdown>
+              <AllDropdown :drop-down-list="destinations"  :applyFilters="applyFilters" v-model="selectedDestination" @input="applyFilters" label="Destination"></AllDropdown>
             </v-col>
           </v-row>
         </v-col>
@@ -39,9 +39,7 @@ onMounted(() => {
 });
    const Statuses = ref(['enabled', 'disabled']);
   const scheduleTypes = ref(['Manual', 'Scheduled', 'Cron']);
-//   const sources = ref(['source1', 'source2']);
-//   const destinations = ref(['Destination1', 'Destination2']);
-  
+ 
   const selectedStatus = ref(null);
   const selectedScheduleType = ref(null);
   const selectedSource = ref(null);
@@ -54,6 +52,7 @@ onMounted(() => {
       source_connector: selectedSource.value,
       destination_connector: selectedDestination.value,
     });
+    console.log("filters")
   };
   </script>
   
