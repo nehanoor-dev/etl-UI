@@ -21,7 +21,7 @@
                 <p class="headingFont">Replication Frequency</p>
                 <span class="font">How often your data will sync to your destinaiton</span>
             </v-col>
-            <v-text-field v-model=frequency variant="outlined" width="40px" ></v-text-field>
+            <v-select v-model=replicationFrequencies[0] :items=replicationFrequencies variant="outlined" width="40px" ></v-select>
         </v-row>
        
         <v-row class="mt-10" justify="end">
@@ -43,6 +43,8 @@ const connectionName = ref("Custom Connection")
 const selectedScheduleType = ref("Schedule")
 const scheduleType = ref(['Schedule', 'Manual', 'Cron'])
 const frequency = ref("Enter")
+const replicationFrequencies = ['Every hour', 'Every 2 hours', 'Every 6 hours', 'Every 8 hours', 'Every 12 hours', 'Every 24 hours'];
+
 
 const props = defineProps({
     sourceId: String,
