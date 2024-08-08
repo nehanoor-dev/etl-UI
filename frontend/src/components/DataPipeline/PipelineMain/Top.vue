@@ -29,9 +29,6 @@ const healthy = ref(9);
 const inactive = ref(4);
 const paused = ref(1);
 
-const Newpipeline = () => {
-      router.push({ name: 'Stepper' });
-    };
 
 </script>
 

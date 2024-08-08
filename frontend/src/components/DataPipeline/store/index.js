@@ -41,6 +41,20 @@ export default createStore({
     }
   },
   actions: {
+    async createPipelines({ commit , state}, data) {
+      
+      try {
+       const response = await axios.post('http://10.0.52.179:8081/api/connections' , data,
+        {
+        headers: {
+          'Authorization': `Bearer ${state.token}` // Include token in request headers
+        }
+      });
+      console.log(response.status)
+      } catch (error) {
+        console.error('Error fetching pipelines:', error);
+      }
+    },
     async fetchPipelines({ commit, state }) {
       try {
         const response = await axios.get('http://10.0.52.179:8081/api/connections', {

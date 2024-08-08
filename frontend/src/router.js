@@ -16,7 +16,7 @@ import Loader from './components/DataPipeline/NewPipeline/Configuration/Loader.v
 import MultipleSource from './components/DataPipeline/BulkPipeline/MultipleSource.vue';
 import MultipleDestination from './components/DataPipeline/BulkPipeline/MultipleDestination.vue';
 import BulkPipeLineMain from './components/DataPipeline/BulkPipeline/BulkPipeLineMain.vue';
-
+import MultipleSourceStepper from './components/DataPipeline/BulkPipeline/MultipleSourceStepper.vue';
 
 import WebScrapPipeline from './components/SubComponents/WebScrapPipeline.vue'
 
@@ -65,6 +65,11 @@ const routes = [
     path: '/multipledestination',
     name: 'MultipleDestination',
     component: MultipleDestination,
+  },
+  {
+    path: '/newsourcebulk',
+    name: 'NewSourceBulk',
+    component: MultipleSourceStepper,
   },
 ];
 

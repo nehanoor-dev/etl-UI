@@ -41,7 +41,7 @@ const store = useStore();
 
 const connectionName = ref("Custom Connection")
 const selectedScheduleType = ref("Schedule")
-const scheduleType = ref(['Schedule', 'Manual', 'Corn'])
+const scheduleType = ref(['Schedule', 'Manual', 'Cron'])
 const frequency = ref("Enter")
 
 const props = defineProps({
