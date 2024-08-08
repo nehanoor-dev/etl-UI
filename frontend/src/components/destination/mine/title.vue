@@ -1,8 +1,14 @@
 <template>
+  <!-- Main container for the title component -->
   <v-container>
-    <v-row justify="center">
-      <v-col cols="12" class="text-center">
-        <p class="heading">{{ heading }}</p>
+    <!-- Row container to hold the title -->
+    <v-row>
+      <!-- Column spanning the entire row width -->
+      <v-col cols="12">
+        <!-- Title text with inline styles for font, size, margin, alignment, and color -->
+        <p :style="{ fontFamily: 'Roboto', fontSize: '2em', marginBottom: '10px', textAlign: 'center', color: '#023C83' }">
+          {{ heading }}
+        </p>
       </v-col>
     </v-row>
   </v-container>
@@ -10,22 +16,11 @@
 
 <script>
 export default {
-  name: 'Title',
+  name: 'Title', // Name of the component
   data: () => ({
-    heading: 'Select Destination',
+    heading: 'Select Destination Connector', // Data property to hold the title text
   }),
 }
 </script>
 
-<style scoped>
-.heading {
-  font-size: 24px; /* Adjust the font size as needed */
-  color: black; /* Adjust the color as needed */
-  font-size: 2em;
-  margin-bottom: 10px;
-}
-.text-center {
-  text-justify: center;
-  margin-bottom: 10px;
-}
-</style>
+<style scoped></style>
