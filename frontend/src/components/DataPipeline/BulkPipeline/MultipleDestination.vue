@@ -1,16 +1,17 @@
 <template>
     <v-container fluid>
-
-        <div class="my-2">
-            <p class="heading"> Select Source</p>
-          </div>
-
         <div class="my-2">
             <p class="heading"> Select Multiple Destination</p>
           </div>
         <BulkInputTable
-          :table-list="destinationData"
+        :table-list="destinationData"
+        @update-selected="updateSelectedDestinations"
         />
+        <v-row align="end">
+          <v-btn @click="sendSelectedDestination">
+            Next
+          </v-btn>
+        </v-row>
       </v-container>
 </template>
 <script setup>
@@ -20,25 +21,33 @@ import { ref, onBeforeMount, computed } from 'vue';
 
 
 const store = useStore();
+const emit = defineEmits(['destination-selected']);
 
 onBeforeMount(() => {
-  store.dispatch('fetchSources');
   store.dispatch('fetchDestinations')
 });
 
 
 const destinations = computed(() => store.state.destination.destination || []);
-
+const selectedDestination = ref([])
+console.log(destinations)
 const destinationData = computed(() => 
   (destinations.value || []).map(destination => ({
-    name: destination.name,
-    connector: destination.connector.name,
-    image:destination.connector.image,
-    connections: destination.connectionCount,
-    selected: false,
+        id: destination ._id,
+        name: destination .name,
+        connector: destination .name,
+        image: destination .image,
+        lastUpdated: destination .updated_at,
   }))
 );
 
+const updateSelectedDestinations = (destinations) =>{
+    selectedDestination.value=destinations;
+}
+
+const sendSelectedDestination = (sources) =>{
+  emit('destination-selected', selectedDestination.value);
+}
 
 </script>
 <style scoped>

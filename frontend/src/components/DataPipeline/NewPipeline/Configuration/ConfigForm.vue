@@ -44,24 +44,21 @@
         </v-row>
       </v-col>
     </v-row>
-  </template>
-  
-  <script setup>
-  import { ref } from 'vue';
-  import { useStore } from 'vuex';
-  
-  // Vuex store instance
-  const store = useStore();
-  
-  // Component state
-  const connectionName = ref("Custom Connection");
-  const selectedScheduleType = ref("Schedule");
-  const scheduleType = ref(['Scheduled', 'Manual', 'Cron']);
-  const frequency = ref("Enter");
-  const replicationFrequencies = ['Every hour', 'Every 2 hours', 'Every 6 hours', 'Every 8 hours', 'Every 12 hours', 'Every 24 hours'];
-  
-  // Props for source and destination IDs
-  const props = defineProps({
+
+</template>
+<script setup>
+import { ref } from 'vue';
+import router from '@/router';
+import { useStore } from 'vuex';
+
+const store = useStore();
+
+const connectionName = ref("Custom Connection")
+const selectedScheduleType = ref("Schedule")
+const scheduleType = ref(['Schedule', 'Manual', 'Cron'])
+const frequency = ref("Enter Frequency")
+
+const props = defineProps({
     sourceId: String,
     destinationId: String
   });

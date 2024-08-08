@@ -17,7 +17,7 @@
             </v-col>
 
             <v-col class="d-flex justify-end">
-                <v-btn @click="newPipeline" elevation="2" size="large" rounded="lg">
+                <v-btn @click="goToMutilpleDestinationStepper"  elevation="2" size="large" rounded="lg">
                     <v-icon left>mdi-plus</v-icon>
                     Multiple Destination ?
                 </v-btn>
@@ -37,6 +37,10 @@ const router = useRouter();
 const goToMutilpleSourceStepper = () => {
     router.push({ name: 'NewSourceBulk' });
 };
+
+const goToMutilpleDestinationStepper = () => {
+      router.push({ name: 'NewDestinationBulk' });
+    };
 
 </script>
 

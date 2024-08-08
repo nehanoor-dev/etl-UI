@@ -19,6 +19,7 @@ import BulkPipeLineMain from './components/DataPipeline/BulkPipeline/BulkPipeLin
 import MultipleSourceStepper from './components/DataPipeline/BulkPipeline/MultipleSourceStepper.vue';
 
 import WebScrapPipeline from './components/SubComponents/WebScrapPipeline.vue'
+import MultipleDestinationStepper from './components/DataPipeline/BulkPipeline/MultipleDestinationStepper.vue';
 
 
 
@@ -70,6 +71,11 @@ const routes = [
     path: '/newsourcebulk',
     name: 'NewSourceBulk',
     component: MultipleSourceStepper,
+  },
+  {
+    path: '/newdestinationbulk',
+    name: 'NewDestinationBulk',
+    component: MultipleDestinationStepper ,
   },
 ];
 
