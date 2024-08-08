@@ -19,7 +19,6 @@
 <script setup>
 import NavBar from './components/NavBar.vue';
 import Sidbar from './components/SideBar.vue';
-import Maindest from './components/destination/mine/maindest.vue';
 </script>
 
 <style>
