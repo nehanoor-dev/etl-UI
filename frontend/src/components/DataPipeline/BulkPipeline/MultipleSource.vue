@@ -26,6 +26,9 @@ const router = useRouter();
 const store = useStore();
 const emit = defineEmits(['source-selected']);
 
+onBeforeMount(() => {
+    store.dispatch('fetchSources');
+});
 const sources = computed(() => store.state.source.sources || []);
 const selectedSources = ref([])
 
