@@ -12,6 +12,7 @@ export default createStore({
     token: "66b30f1c02f04cf3ff04be0b|Apk0xtGOT3EeuneNytaQ80Ps76Ncl4gxzXX6lYJuf95822b3", // Authorization token for API requests
     jobHistory: [],              // Array to hold job history data
     sources: [],                 // Array to hold source data
+    filters: {}
   },
   mutations: {
     // Mutations to update the state
@@ -134,16 +135,16 @@ export default createStore({
     
     async getFilters({ commit, state }) {
       const params = new URLSearchParams();
-      console.log('Filters before request:', { statuses, schedule_type, source_connector, destination_connector }); // Log filters for debugging
-
+      
       const { statuses, schedule_type, source_connector, destination_connector } = state.filters;
-
+      console.log('Filters before request:', { statuses, schedule_type, source_connector, destination_connector });
+    
       // Append filter parameters to the request
-      if (statuses) params.append('status', statuses);
+      if (Array.isArray(statuses) && statuses.length > 0) params.append('status', statuses.join(','));
       if (schedule_type) params.append('scheduleType', schedule_type);
       if (source_connector) params.append('source', source_connector);
       if (destination_connector) params.append('destination', destination_connector);
-
+    
       try {
         const response = await axios.get(`http://10.0.52.179:8081/api/filter-connections?${params.toString()}`, {
           headers: {
@@ -151,11 +152,11 @@ export default createStore({
           }
         });
         commit('setPipelines', response.data); // Commit filtered data to state
-        console.log("Filters"); // Log success message
+        console.log("Filters fetched successfully");
       } catch (err) {
-        console.log('Error during filters', err); // Log error details
+        console.error('Error during filters', err.response ? err.response.data : err.message); // Log error details
       }
-    },
+    },    
     setFilters({ commit, dispatch }, filters) {
       commit('setFilters', filters); // Commit filters to state
       dispatch('getFilters');        // Fetch filtered pipelines
