@@ -1,66 +1,67 @@
 <template>
-    <v-container>
-<div class="my-6">
-    <v-card>
-        <v-container>
-            <div>
+  <v-container fluid>
     <v-row>
-        <v-col>
-            <div>
-                <h3>Create a Destination</h3>
-            </div>
-
-        </v-col>
-        <v-col>
-<div class="d-flex justify-end">
-    <v-icon left>mdi-snowflake</v-icon>
-    <p>BiqQuery</p>
-</div>
-
-        </v-col>
-        
-    </v-row>
-  
-</div>
-<v-row>
-    <v-col col="12">
-        <div class="my-1">
-            <h4>Destination Name</h4>
-        </div>
-        <div>
-    <v-text-field clearable label="Destination Name" variant="outlined"></v-text-field>
-</div>
-    </v-col>
-        
-    </v-row>
+      <v-col cols="12" class="bg-grey-lighten-5">
+        <v-container>
+          <div class="my-6">
+            <ConnectorName />
+          </div>
+          <div v-if="fields">
+            <v-card max-width="600">
+              <div class="ma-4">
+                <v-container>
+                  <v-row>
+                    <v-col class="mb-4">
+                      <h3>Connection Details</h3>
+                    </v-col>
+                  </v-row>
+                  <v-row>
+                    <ConnectorForm />
+                  </v-row>
+                  <v-row>
+                    <v-col cols="6">
+                      <TestConnection />
+                    </v-col>
+                    <v-col cols="6">
+                      <SubmitForm />
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </div>
+            </v-card>
+          </div>
         </v-container>
-
-</v-card>
-</div>
-        
-
-
-
-<div>
-    <v-card >
-<v-container>
-    <div>
-        <h3>Connection</h3>
-    </div>
-    <v-row class="my-1">
-    <v-col col="12">
-        <div class="my-1">
-            <h4>Host</h4>
-        </div>
-        <div>
-    <v-text-field clearable label="Host" variant="outlined"></v-text-field>
-</div>
-    </v-col>
-        
+      </v-col>
     </v-row>
-</v-container>
-</v-card>
-</div>
-       
-    </v-container>
+  </v-container>
 </template>
+
+<script>
+import { mapState, mapActions } from "vuex";
+import ConnectorForm from "./ConnectorForm.vue";
+import TestConnection from "./TestConnection.vue";
+import SubmitForm from "./SubmitForm.vue";
+import ConnectorName from "./ConnectorName.vue";
+
+export default {
+  name: "DestinationConfiguration",
+  components: {
+    ConnectorForm,
+    ConnectorName,
+    TestConnection,
+    SubmitForm,
+  },
+  computed: {
+    ...mapState("destination", ["destination", "fields"]),
+  },
+  watch: {
+    "$route.params.name": "fetchDestination",
+  },
+  methods: {
+    ...mapActions("destination", ["fetchDestination"]),
+  },
+  mounted() {
+    this.fetchDestination(this.$route.params.name);
+  },
+};
+</script>

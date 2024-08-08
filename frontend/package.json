@@ -12,12 +12,11 @@
     "frontend": "file:",
     "roboto-fontface": "*",
     "vue": "^3.4.31",
-    "vuetify": "^3.6.11",
-    "vuex": "^4.1.0",
-
     "vue-chart-3": "^3.1.8",
     "vue-router": "^4.4.2",
-    "vue3-apexcharts": "^1.5.3"
+    "vue3-apexcharts": "^1.5.3",
+    "vuetify": "^3.6.11",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.5",

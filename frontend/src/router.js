@@ -10,7 +10,7 @@ import Workspace from './components/SubComponents/Workspace.vue'
 import FileInstructions from './components/SubComponents/FileInstructions.vue'
 import Settings from './components/SubComponents/Settings.vue'
 import maindest from './components/destination/mine/maindest.vue'
-
+import DestinationConfiguration from './components/destination/Destination Screen/DestinationConfiguration.vue'
 
 const routes = [
   
@@ -22,7 +22,8 @@ const routes = [
   { path: '/source', component: Source },
   { path: '/transformation', component: Transformation },
   { path: '/destination', component: Destination},
-  {name: 'maindest', path: '/destination/maindest.vue', component: maindest},
+  {name: 'maindest', path: '/destination/maindest', component: maindest},
+  {name: 'DestinationConfiguration', path: '/destinationConfiguration/:name', component: DestinationConfiguration},
   { path: '/build-ai-connection', component: BuildAIConnections },
   { path: '/help', component: Help },
   { path: '/workspace', component: Workspace },

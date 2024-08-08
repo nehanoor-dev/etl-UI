@@ -1,88 +1,67 @@
 full code:
 <template>
 
-<!-- <v-main>
+    <!-- <v-main>
 <v-responsive aspect-ratio="16/9"> -->
-<!-- <v-container class=" mt-n8" > -->
+    <!-- <v-container class=" mt-n8" > -->
 
-<v-row class="box">
+    <v-row class="box">
 
-<v-col cols="12">
+        <v-col cols="12">
 
-<!-- <v-card flat class="mt-n8"> -->
+            <!-- <v-card flat class="mt-n8"> -->
 
-<!-- <v-card-title class="text-h5 font-weight-bold pb-0 mt-n3">
+            <!-- <v-card-title class="text-h5 font-weight-bold pb-0 mt-n3">
 
 UD Connectors
 
 </v-card-title> -->
 
-<v-card-text class="pt-2">
+            <v-card-text class="pt-2">
 
-<v-card class="pa-4" color="#FFFFFF" rounded="lg">
+                <v-card class="pa-4" color="#FFFFFF" rounded="lg">
 
-<v-row class="no-gutters">
+                    <v-row class="no-gutters">
 
-<v-col
+                        <v-col v-for="source in sources" :key="source._id" cols="12" sm="6" md="3"
+                            class="text-center mb-3 d-flex justify-center">
+                                <v-card class="pa-4 internal-card rounded-lg" elevation="2"
+                                    @click="navigateToSource(source)">
 
-v-for="source in sources"
+                                    <div class="d-flex flex-column align-center justify-center">
 
-:key="source._id"
+                                        <div class="large-icon mb-2">
 
-cols="12"
+                                            <v-img class="img" :src="source.image" contain></v-img>
 
-sm="6"
+                                        </div>
 
-md="3"
+                                        <div class="source-name">
 
-class="text-center mb-3 d-flex justify-center"
+                                            {{ source.name }}
 
->
+                                        </div>
 
-<v-card
+                                    </div>
 
-class="pa-4 internal-card rounded-lg"
+                                </v-card>
+                           
+                        </v-col>
 
-elevation="2"
+                    </v-row>
 
-@click="navigateToSource(source)"
+                </v-card>
 
->
+            </v-card-text>
 
-<div class="d-flex flex-column align-center justify-center">
+            <!-- </v-card> -->
 
-<div class="large-icon mb-2">
+        </v-col>
 
-<v-img class="img" :src="source.image" contain></v-img>
+    </v-row>
 
-</div>
-
-<div class="source-name">
-
-{{ source.name }}
-
-</div>
-
-</div>
-
-</v-card>
-
-</v-col>
-
-</v-row>
-
-</v-card>
-
-</v-card-text>
-
-<!-- </v-card> -->
-
-</v-col>
-
-</v-row>
-
-<!-- </v-container> -->
-<!-- </v-responsive>
+    <!-- </v-container> -->
+    <!-- </v-responsive>
 </v-main> -->
 
 </template>
@@ -94,54 +73,54 @@ elevation="2"
 import axios from 'axios';
 
 export default {
-name:"Cardsc",
-data: () => ({
+    name: "Cardsc",
+    data: () => ({
 
-sources: [],
+        sources: [],
 
-}),
+    }),
 
-created() {
+    created() {
 
-this.fetchSources();
+        this.fetchSources();
 
-},
+    },
 
-methods: {
+    methods: {
 
-async fetchSources() {
+        async fetchSources() {
 
-try {
+            try {
 
-const response = await axios.get('http://10.0.52.171:8081/api/data');
+                const response = await axios.get('http://10.0.52.171:8081/api/available-destinations');
 
-this.sources = response.data.map(source => {
+                this.sources = response.data.map(source => {
 
-return {
+                    return {
 
-...source,
+                        ...source,
 
-image: source.image.startsWith('data:image') ? source.image : 'data:image/png;base64,' + source.image,
+                        image: source.image.startsWith('data:image') ? source.image : 'data:image/png;base64,' + source.image,
 
-};
+                    };
 
-});
+                });
 
-} catch (error) {
+            } catch (error) {
 
-console.error('Error fetching sources:', error);
+                console.error('Error fetching sources:', error);
 
-}
+            }
 
-},
+        },
 
-navigateToSource(source) {
+        navigateToSource(source) {
 
-this.$router.push({ name: 'source-details', params: { source: source.name.toLowerCase() } });
+            this.$router.push({ name: 'DestinationConfiguration', params: { name: source.name} });
 
-}
+        }
 
-},
+    },
 
 };
 
@@ -150,32 +129,32 @@ this.$router.push({ name: 'source-details', params: { source: source.name.toLowe
 
 
 <style scoped>
-
 .internal-card {
 
-cursor: pointer;
+    cursor: pointer;
 
-background-color: #ffffff;
+    background-color: #ffffff;
 
-color: #000000;
+    color: #000000;
 
-display: flex;
+    display: flex;
 
-align-items: center;
+    align-items: center;
 
-justify-content: center;
+    justify-content: center;
 
-height: 150px;
+    height: 150px;
 
-width: 90%; /* Ensure full width for equal margin */
+    width: 90%;
+    /* Ensure full width for equal margin */
 
-border: 1px solid #d3d3d313;
+    border: 1px solid #d3d3d313;
 
-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 
-margin-left: auto;
+    margin-left: auto;
 
-margin-right: auto;
+    margin-right: auto;
 
 }
 
@@ -183,7 +162,7 @@ margin-right: auto;
 
 .internal-card:hover {
 
-background-color: #e8f0fe;
+    background-color: #e8f0fe;
 
 }
 
@@ -193,7 +172,7 @@ background-color: #e8f0fe;
 
 .internal-card:hover .source-name {
 
-color: #023C83 !important;
+    color: #023C83 !important;
 
 }
 
@@ -201,9 +180,9 @@ color: #023C83 !important;
 
 .v-card-text {
 
-padding-top: 8px;
+    padding-top: 8px;
 
-padding-bottom: 8px;
+    padding-bottom: 8px;
 
 }
 
@@ -213,15 +192,15 @@ padding-bottom: 8px;
 
 .large-icon {
 
-width: 64px;
+    width: 64px;
 
-height: 64px;
+    height: 64px;
 
-display: flex;
+    display: flex;
 
-align-items: center;
+    align-items: center;
 
-justify-content: center;
+    justify-content: center;
 
 }
 
@@ -230,29 +209,27 @@ justify-content: center;
 .large-icon .v-img {
 
 
-min-width: 70px;
-min-height: 70px;
+    min-width: 70px;
+    min-height: 70px;
 
- aspect-ratio: 3/2;  
-/* object-fit: contain; */
-/* background-color: transparent; */
+    aspect-ratio: 3/2;
+    /* object-fit: contain; */
+    /* background-color: transparent; */
 }
 
 
 
 .source-name {
 
-text-align: center;
+    text-align: center;
 
-font-size: 14px;
+    font-size: 14px;
 
-line-height: 1.2;
+    line-height: 1.2;
 
-max-width: 120px;
+    max-width: 120px;
 
-word-wrap: break-word;
+    word-wrap: break-word;
 
 }
-
-
 </style>
