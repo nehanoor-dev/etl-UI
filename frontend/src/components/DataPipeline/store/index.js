@@ -24,6 +24,9 @@ export default createStore({
     updatePipeline(state, pipelineId) {
       state.pipelines = state.pipelines.filter(pipeline => pipeline.id !== pipelineId);
     },
+    updateStatus(state, pipelineId) {
+      state.pipelines = state.pipelines.filter(pipeline => pipeline.id !== pipelineId);
+    },
     setPipelines(state, pipelines) {
       state.pipelines = pipelines;
     },
@@ -95,6 +98,7 @@ export default createStore({
     },
     async deletePipeline({ commit, state }, pipelineId) {
       try {
+        //console.log(id)
         await axios.delete(`http://10.0.52.179:8081/api/connection/${pipelineId}`, {
           headers: {
             'Authorization': `Bearer ${state.token}` // Include token in request headers
@@ -107,20 +111,16 @@ export default createStore({
     },
     async saveChanges({ commit, state }, payload) {
       console.log('Payload:', payload);
-      const data={
-        name: payload.connectionName,
-        scheduleType: payload.scheduleType1,  
-        frequency: payload.replicationFrequency,
-      }
-      console.log(data)
+      
       try {
-        const response = await axios.put(`http://10.0.52.179:8081/api/connections/${payload.id}`,data , {
+        const response = await axios.put(`http://10.0.52.179:8081/api/connections/${payload.id}`,payload, {
           headers: {
             'Authorization': `Bearer ${state.token}`
           }
         });
         console.log('Changes saved:', response.data);
         commit('updatePipeline');
+        commit('updateStatus')
       } catch (error) {
         console.error('Error saving changes:', error.response.data); // Detailed error information
       }

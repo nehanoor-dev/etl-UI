@@ -34,7 +34,7 @@
           <v-icon left>mdi-refresh</v-icon>
           Sync now
         </v-btn>
-        <v-switch v-model="isEnabled" color="primary" label="status" hide-details></v-switch>
+        <v-switch v-model="isEnabled" @click="statusUpdate" color="primary" label="status" hide-details></v-switch>
         <div class="relative-container">
           <v-icon @click="toggleDialog" size="30" class="ml-5">mdi-cog</v-icon>
           <v-slide-y-transition>
@@ -51,6 +51,8 @@
                 :schedule-type = "pipeline.schedule_type"
                 :frequency = "pipeline.frequency"
                 :id = "pipeline.id"
+                :dialogVisible = "dialogVisible"
+                @dialog="handleDialog"
                 ></Setting>
               </v-card-text>
               <v-card-actions>
@@ -80,13 +82,33 @@ const store = useStore();
 
 const pipeline = computed(() => store.getters.getPipelineById(props.id));
 
-const isEnabled = ref(pipeline.value.status === 'enabled');
-
+const isEnabled = ref(pipeline.value.status === 'Enabled');
 const dialogVisible = ref(false);
 
+const handleDialog = (value) => {
+  console.log("v",value)
+  dialogVisible.value = value
+}
 const toggleDialog = () => {
   dialogVisible.value = !dialogVisible.value;
 };
+const statusUpdate = () => {
+  var x= "Enabled";
+  console.log("jhgh",pipeline.value.status);
+  if(pipeline.value.status=="Enabled"){
+    pipeline.value.status = "Disabled"
+    console.log("upsate",pipeline.value.status)
+    x="Disabled"
+  }
+  const currentStatus = isEnabled.value;
+  const status = {
+    id: props.id,
+    status: x,
+  }
+  console.log("ji",status);
+  store.dispatch('saveChanges', status )
+  console.log(status)
+}
 </script>
 
 <style scoped>
