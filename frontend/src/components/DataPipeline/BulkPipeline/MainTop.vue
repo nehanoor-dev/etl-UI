@@ -2,7 +2,7 @@
     <v-container fluid>
         <v-row class="fill-height" align="center" justify="space-between">
             <!-- Left Side -->
-            <v-col cols='6' class="ml-2">
+            <v-col cols='2' class="ml-2">
                 <v-row class="heading">
                     Connections
                 </v-row>

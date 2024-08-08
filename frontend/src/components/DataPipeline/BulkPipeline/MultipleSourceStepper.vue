@@ -21,7 +21,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRouter } from 'vue-router'; 
 import { useStore } from 'vuex';
 
 const store = useStore();
@@ -30,7 +30,7 @@ import MultipleSource from './MultipleSource.vue'
 import ConfigBulkPipe from './ConfigBulkPipe.vue';
 import Destination from '../NewPipeline/Destination/Destination.vue';
 
-const route = useRoute();
+const route = useRouter();
 const step = ref(1);
 const items = ref(['Define Source', 'Define Destination', 'Configure Pipeline']);
 const selectedSource = ref(null);
@@ -67,6 +67,7 @@ const sendingData = () =>{
   }
 
   store.dispatch('setSourceBulkPipeLine',data);
+  route.push('/pipelines');  
 
 
 }

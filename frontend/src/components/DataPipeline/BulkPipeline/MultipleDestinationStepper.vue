@@ -23,17 +23,20 @@
   
   <script setup>
   import { ref } from 'vue';
-  import { useRoute } from 'vue-router';
+  import { useRouter } from 'vue-router';
   import MultipleDestination from './MultipleDestination.vue';
   import ConfigBulkPipe from './ConfigBulkPipe.vue';
   import Source from '../NewPipeline/source/Source.vue';
   
-  const route = useRoute();
+  const route = useRouter();
   const step = ref(1);
   const items = ref(['Define Source', 'Define Destination', 'Configure Pipeline']);
   const selectedSource = ref(null);
   const selectedDestination = ref(null);
   const configurations = ref([])
+  import { useStore } from 'vuex';
+
+  const store = useStore();
   
   
   const handleSourceSelected = (source) => {
@@ -51,12 +54,23 @@
   };
   
   const sendingData = () =>{
-  
-    console.log(selectedSource);
-    console.log(selectedDestination);
-    console.log(configurations);
-  
-  
+
+  const destinaitonIds = selectedDestination.value.map(source => source.id);
+  console.log(configurations.value)
+
+  const data = {
+    name:configurations.value.connectionName,
+    bulk_type:"Destinations",
+    status:'Enabled',
+    frequency:configurations.value.frequency,
+    schedule_type:configurations.value.scheduleType,
+    destination_ids:destinaitonIds,
+    source_id:selectedSource.value
+  }
+
+  store.dispatch('setDestinationBulkPipeLine',data);
+
+  route.push('/pipelines');  
   
   }
    </script>

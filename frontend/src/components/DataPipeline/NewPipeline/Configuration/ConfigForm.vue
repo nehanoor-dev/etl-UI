@@ -48,15 +48,18 @@
 </template>
 <script setup>
 import { ref } from 'vue';
-import router from '@/router';
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router'; 
+const router = useRouter(); 
 
 const store = useStore();
 
 const connectionName = ref("Custom Connection")
-const selectedScheduleType = ref("Schedule")
-const scheduleType = ref(['Schedule', 'Manual', 'Cron'])
+const selectedScheduleType = ref("Scheduled")
+const scheduleType = ref(['Scheduled', 'Manual', 'Cron'])
 const frequency = ref("Enter Frequency")
+const replicationFrequencies = ['Every hour', 'Every 2 hours', 'Every 6 hours', 'Every 8 hours', 'Every 12 hours', 'Every 24 hours'];
+
 
 const props = defineProps({
     sourceId: String,
@@ -69,13 +72,15 @@ const props = defineProps({
       name: connectionName.value,
       source_connector_id: props.sourceId,
       destination_connector_id: props.destinationId,
-      status: "enabled",
+      status: "Enabled",
       frequency: frequency.value,
-      schedule_type: selectedScheduleType.value.toLowerCase()
+      schedule_type: selectedScheduleType.value
     };
+
   
     // Dispatch action to create pipelines
     store.dispatch('createPipelines', data);
+    router.push('/pipelines');  
   
     // Uncomment the following line if routing is needed after submission
     // router.push('/loader');

@@ -52,7 +52,8 @@ export default createStore({
             'Authorization': `Bearer ${state.token}` // Include token in request headers
           }
         });
-        console.log(response.status); // Log response status for debugging
+        //console.log(response.status); // Log response status for debugging
+        
       } catch (error) {
         console.error('Error fetching pipelines:', error); // Log error details
       }
@@ -104,7 +105,7 @@ export default createStore({
     async deletePipeline({ commit, state }, pipelineId) {
       try {
         console.log(pipelineId)
-        await axios.delete(`http://10.0.52.179:8081/api/connectionss/${pipelineId}`, {
+        await axios.delete(`http://10.0.52.179:8081/api/connections/${pipelineId}`, {
           headers: {
             'Authorization': `Bearer ${state.token}` // Include token in request headers
           }
@@ -189,7 +190,25 @@ export default createStore({
             'Authorization': `Bearer ${state.token}`
           }
         });
-        commit('setPipelines', response.data);
+        //commit('setPipelines', response.data);
+        console.log("Filters")
+      } catch (err) {
+        console.log('Error during filters', err);
+      }
+
+    },
+
+    async setDestinationBulkPipeLine({commit,state}, data){
+      
+
+      console.log(data)
+      try {
+        const response = await axios.post(`http://10.0.52.179:8081/api/bulkConnections`, data, {
+          headers: {
+            'Authorization': `Bearer ${state.token}`
+          }
+        });
+        //commit('setPipelines', response.data);
         console.log("Filters")
       } catch (err) {
         console.log('Error during filters', err);
@@ -210,6 +229,7 @@ export default createStore({
     },
     allSources: (state) => {
       const sources = new Set();
+      console.log(state.pipelines)
       state.pipelines.forEach(pipeline => {
         if (pipeline.source_connector) {
           sources.add(pipeline.source_connector.name); // Add unique sources to the set
@@ -219,6 +239,7 @@ export default createStore({
     },
     allDestinations: (state) => {
       const destinations = new Set();
+      
       state.pipelines.forEach(pipeline => {
         if (pipeline.destination_connector) {
           destinations.add(pipeline.destination_connector.name); // Add unique destinations to the set
