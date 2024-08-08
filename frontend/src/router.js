@@ -13,10 +13,9 @@ import Stepper from './components/DataPipeline/NewPipeline/Stepper.vue';
 
 import PipelineInfo from './components/DataPipeline/PipelineInfo/PipelineInfo.vue';
 import Loader from './components/DataPipeline/NewPipeline/Configuration/Loader.vue';
-import PipelinePopup from './components/PipelinePopup.vue';
 import MultipleSource from './components/DataPipeline/BulkPipeline/MultipleSource.vue';
 import MultipleDestination from './components/DataPipeline/BulkPipeline/MultipleDestination.vue';
-
+import BulkPipeLineMain from './components/DataPipeline/BulkPipeline/BulkPipeLineMain.vue';
 
 
 import WebScrapPipeline from './components/SubComponents/WebScrapPipeline.vue'
@@ -35,6 +34,7 @@ const routes = [
 
   { path: '/FileInstructions', component: FileInstructions },
   { path: '/pipelines', component: Pipeline },
+  { path: '/bulkpipeline', name: 'BulkPipeLine', component:BulkPipeLineMain },
   { path: '/source', component: Source },
   { path: '/transformation', component: Transformation },
   { path: '/destination', component: Destination },
@@ -55,11 +55,7 @@ const routes = [
     name: 'Loader',
     component: Loader,
   },
-  {
-    path: '/bulkpipelines',
-    name: 'Bulkpipelines',
-    component: PipelinePopup,
-  },
+ 
   {
     path: '/multiplesource',
     name: 'MultipleSource',

@@ -44,7 +44,6 @@
         </template>
 
     </v-navigation-drawer>
-    <PipelinePopup ref="PipelinePopup" />
 
 </template>
 
@@ -53,15 +52,12 @@
 <script>
 
 import Profile from './Profile.vue';
-import PipelinePopup from './PipelinePopup.vue'
-
 
 
 export default {
 
     components: {
         Profile,
-        PipelinePopup
     },
 
     data() {
@@ -79,7 +75,7 @@ export default {
                 { route: '/dashboard', value: 'dashboard', icon: 'mdi-view-dashboard', title: 'Dashboard' },
 
                 { route: '/pipelines', value: 'pipeline', icon: 'mdi-pipe', title: 'Pipelines' },
-                { value: 'bulk-pipeline', icon: 'mdi-multicast', title: 'Bulk Pipelines' },
+                { route: '/bulkpipeline',value: 'bulk-pipeline', icon: 'mdi-multicast', title: 'Bulk Pipelines' },
                 { route: '/webscrappipeline', value: 'web-scrap-pipeline', icon: 'mdi-spider-web', title: 'Web Scrap Pipelines' },
 
                 { route: '/source', value: 'source', icon: 'mdi-power-plug', title: 'Source' },
@@ -125,14 +121,6 @@ export default {
             console.log(`Item clicked: ${item.value}`);
 
             this.selectedItem = item.value;
-                            console.log(item.title)
-
-            if (item.title === 'Bulk Pipelines') {
-                console.log(item.title)
-                // Open the popup
-                this.$refs.PipelinePopup.openPopup();
-            }
-
 
             this.$router.push(item.route); // Navigate to the route
 
