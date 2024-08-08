@@ -22,9 +22,6 @@ import Sidbar from './components/SideBar.vue';
 </script>
 
 <style>
-.v-container {
-  /* height: 100vh; */
-}
 
 .v-col {
   padding: 0;
