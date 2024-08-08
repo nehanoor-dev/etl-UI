@@ -22,6 +22,10 @@
 <script setup>
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
+import { useStore } from 'vuex';
+
+const store = useStore();
+
 import MultipleSource from './MultipleSource.vue'
 import ConfigBulkPipe from './ConfigBulkPipe.vue';
 import Destination from '../NewPipeline/Destination/Destination.vue';
@@ -49,11 +53,20 @@ const handleConfiguration = (configuration) => {
 };
 
 const sendingData = () =>{
+  const sourceIds = selectedSource.value.map(source => source.id);
+  console.log(configurations.value)
 
-  console.log(selectedSource);
-  console.log(selectedDestination);
-  console.log(configurations);
+  const data = {
+    name:configurations.value.connectionName,
+    bulk_type:"Sources",
+    status:'Enabled',
+    frequency:configurations.value.frequency,
+    schedule_type:configurations.value.scheduleType,
+    destination_id:selectedDestination.value,
+    source_ids:sourceIds
+  }
 
+  store.dispatch('setSourceBulkPipeLine',data);
 
 
 }

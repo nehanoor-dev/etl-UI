@@ -116,9 +116,9 @@ const filteredPipelines = computed(() => {
 // Get status icon based on pipeline status
 const getStatusIcon = (status) => {
   switch (status) {
-    case 'enabled':
+    case 'Enabled':
       return 'mdi-check';
-    case 'disabled':
+    case 'Disabled':
       return 'mdi-close';
     default:
       return 'mdi-equal';

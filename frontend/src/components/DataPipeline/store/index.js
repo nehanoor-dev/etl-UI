@@ -103,8 +103,8 @@ export default createStore({
     },
     async deletePipeline({ commit, state }, pipelineId) {
       try {
-        //console.log(id)
-        await axios.delete(`http://10.0.52.179:8081/api/connections/${pipelineId}`, {
+        console.log(pipelineId)
+        await axios.delete(`http://10.0.52.179:8081/api/connectionss/${pipelineId}`, {
           headers: {
             'Authorization': `Bearer ${state.token}` // Include token in request headers
           }
@@ -159,6 +159,46 @@ export default createStore({
       commit('setFilters', filters); // Commit filters to state
       dispatch('getFilters');        // Fetch filtered pipelines
     },
+
+    async setSourceBulkPipeLine({commit,state}, data){
+
+      console.log(data)
+      try {
+        const response = await axios.post(`http://10.0.52.179:8081/api/bulkConnections`, data, {
+          headers: {
+            'Authorization': `Bearer ${state.token}` // Include token in request headers
+          }
+        });
+        commit('setPipelines', response.data); // Commit filtered data to state
+        console.log("Filters"); // Log success message
+      } catch (err) {
+        console.log('Error during filters', err); // Log error details
+      }
+    },
+    setFilters({ commit, dispatch }, filters) {
+      commit('setFilters', filters); // Commit filters to state
+      dispatch('getFilters');        // Fetch filtered pipelines
+    },
+
+    async setSourceBulkPipeLine({commit,state}, data){
+
+      console.log(data)
+      try {
+        const response = await axios.post(`http://10.0.52.179:8081/api/bulkConnections`, data, {
+          headers: {
+            'Authorization': `Bearer ${state.token}`
+          }
+        });
+        commit('setPipelines', response.data);
+        console.log("Filters")
+      } catch (err) {
+        console.log('Error during filters', err);
+      }
+
+    }
+
+
+    
   },
   getters: {
     // Getter functions to retrieve specific data from the state
