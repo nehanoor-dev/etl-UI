@@ -52,6 +52,7 @@ export default createStore({
   actions: {
     // Actions to handle asynchronous operations
     async createPipelines({ commit, state }, data) {
+      console.log(data)
       try {
         const response = await axios.post('http://10.0.52.179:8081/api/connections', data, {
           headers: {
