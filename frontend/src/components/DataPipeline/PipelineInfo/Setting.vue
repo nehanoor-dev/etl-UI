@@ -67,8 +67,10 @@
   <script setup>
   import { ref } from 'vue';
   import { useStore } from 'vuex';
+  import { useRouter  } from 'vue-router';
   
   const store = useStore();
+  const route = useRouter();
   
   const props = defineProps({
     pipelineName: String,
@@ -109,6 +111,7 @@
     console.log('Pipeline deleted');
     showDelete.value = false;
     emit('dialog', false);
+    route.push('/pipelines')
 
   };
   const showDeleteDialog = () => {
