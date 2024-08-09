@@ -25,11 +25,16 @@ export default createStore({
     removePipeline(state, pipelineId) {
       state.pipelines = state.pipelines.filter(pipeline => pipeline.id !== pipelineId); // Remove pipeline by ID
     },
-    updatePipeline(state, pipelineId) {
-      state.pipelines = state.pipelines.filter(pipeline => pipeline.id !== pipelineId); // Update pipeline by ID
-    },
-    updateStatus(state, pipelineId) {
-      state.pipelines = state.pipelines.filter(pipeline => pipeline.id !== pipelineId); // Update status of a specific pipeline
+    updatePipeline(state, updatedData) {
+      const pipelineIndex = state.pipelines.findIndex(pipeline => pipeline.id === updatedData._id);
+      if (pipelineIndex !== -1) {
+        // Update the specific fields of the pipeline in the state
+        const pipeline = state.pipelines[pipelineIndex];
+        pipeline.schedule_type = updatedData.schedule_type;
+        pipeline.name = updatedData.name;
+        pipeline.frequency = updatedData.frequency;
+        pipeline.status = updatedData.status;
+      }
     },
     setPipelines(state, pipelines) {
       state.pipelines = pipelines; // Set pipelines data
@@ -126,8 +131,7 @@ export default createStore({
           }
         });
         console.log('Changes saved:', response.data); // Log saved changes for debugging
-        commit('updatePipeline');
-        commit('updateStatus');
+        commit('updatePipeline', response.data);
       } catch (error) {
         console.error('Error saving changes:', error.response.data); // Log detailed error information
       }

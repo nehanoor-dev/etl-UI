@@ -96,7 +96,7 @@
   // Transform destinations for use in the data table
   const destinationsData = computed(() =>
     (destinations.value).map(destination => ({
-      id: destination._id,
+      id: destination.id,
       name: destination.name,
       connector: destination.name,
       image: destination.image,

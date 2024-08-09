@@ -97,7 +97,7 @@
   // Prepare data for the data table
   const sourcesData = computed(() =>
     (sources.value || []).map(source => ({
-      id: source._id,
+      id: source.id,
       name: source.name,
       connector: source.name,
       image: source.image,
