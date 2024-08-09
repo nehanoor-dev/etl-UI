@@ -7,10 +7,24 @@
       :table-list="sourcesData"
       @update-selected="updateSelectedSources"
     />
+    <div class="mb-4">
+      <v-alert
+      v-if="showMessage"
+      type="error"
+      dismissible
+      width="350px"
+      variant="tonal"
+    >
+      Please select at least one source.
+    </v-alert>
+
+  </div>
+
     <v-row align="end">
       <v-btn @click="sendSelectedSources">
         Next
       </v-btn>
+      
     </v-row>
   </v-container>
 </template>
@@ -25,6 +39,8 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 const store = useStore();
 const emit = defineEmits(['source-selected']);
+const showMessage = ref(false);
+
 
 onBeforeMount(() => {
     store.dispatch('fetchSources');
@@ -42,12 +58,19 @@ const sourcesData = computed(() =>
     }))
 );
 
+const isSelectedSourcesEmpty = computed(() => selectedSources.value.length === 0);
+
 const updateSelectedSources = (sources) =>{
     selectedSources.value=sources;
 }
 
 const sendSelectedSources = (sources) =>{
-  emit('source-selected', selectedSources.value);
+  if (isSelectedSourcesEmpty.value) {
+    showMessage.value = true;
+  } else {
+    showMessage.value = false;
+    emit('source-selected', selectedSources.value);
+  }
 }
 
 

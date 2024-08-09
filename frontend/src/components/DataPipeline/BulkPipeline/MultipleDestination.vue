@@ -7,6 +7,17 @@
         :table-list="destinationData"
         @update-selected="updateSelectedDestinations"
         />
+        <div class="mb-4">
+          <v-alert
+          v-if="showMessage"
+          type="error"
+          dismissible
+          width="350px"
+          variant="tonal"
+        >
+          Please select at least one source.
+        </v-alert>
+      </div>
         <v-row align="end">
           <v-btn @click="sendSelectedDestination">
             Next
@@ -22,6 +33,7 @@ import { ref, onBeforeMount, computed } from 'vue';
 
 const store = useStore();
 const emit = defineEmits(['destination-selected']);
+const showMessage = ref(false);
 
 onBeforeMount(() => {
   store.dispatch('fetchDestinations')
@@ -44,9 +56,15 @@ const destinationData = computed(() =>
 const updateSelectedDestinations = (destinations) =>{
     selectedDestination.value=destinations;
 }
+const isSelectedDestinationEmpty = computed(() => selectedDestination.value.length === 0);
 
 const sendSelectedDestination = (sources) =>{
-  emit('destination-selected', selectedDestination.value);
+  if (isSelectedDestinationEmpty.value) {
+    showMessage.value = true;
+  } else {
+    showMessage.value = false;
+    emit('destination-selected', selectedDestination.value);
+  }
 }
 
 </script>
