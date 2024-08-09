@@ -13,7 +13,7 @@
         <ConfigBulkPipe
         @configuration-bulk="handleConfiguration"
         ></ConfigBulkPipe>
-          <v-btn @click="sendingData" color="primary"  >Finish & Sync</v-btn>
+          <v-btn @click="sendingData" color="#023c83"  >Finish & Sync</v-btn>
       </template>
     </v-stepper>
   </v-container>

@@ -8,7 +8,7 @@
     >
       <template v-slot:top>
         <v-row class="align-center pa-2" justify="space-between">
-          <v-col sm="3" lg="3" class="justify-end">
+          <v-col>
             <v-text-field
               v-model="search"
               label="Search"

@@ -2,7 +2,7 @@
     <v-container fluid>
         <v-row class="fill-height" align="center" justify="space-between">
             <!-- Left Side -->
-            <v-col cols='2' class="ml-2">
+            <v-col cols='2' lg="5" class="ml-2">
                 <v-row class="heading">
                     Connections
                 </v-row>
@@ -10,14 +10,16 @@
 
             <!-- Right Side -->
             <v-col class="d-flex justify-end">
-                <v-btn @click="goToMutilpleSourceStepper" elevation="2" size="large" rounded="lg">
+                <v-btn @click="goToMutilpleSourceStepper" elevation="2" size="large" rounded="lg"
+                    style="font-size: 14px; color: #023C83; border: 1px solid #023C83; text-transform: capitalize;">
                     <v-icon left>mdi-plus</v-icon>
                     Multiple Source ?
                 </v-btn>
             </v-col>
 
             <v-col class="d-flex justify-end">
-                <v-btn @click="goToMutilpleDestinationStepper"  elevation="2" size="large" rounded="lg">
+                <v-btn @click="goToMutilpleDestinationStepper" elevation="2" size="large" rounded="lg"
+                    style="font-size: 14px; color: #023C83;border: 1px solid #023C83; text-transform: capitalize;">
                     <v-icon left>mdi-plus</v-icon>
                     Multiple Destination ?
                 </v-btn>
@@ -39,8 +41,8 @@ const goToMutilpleSourceStepper = () => {
 };
 
 const goToMutilpleDestinationStepper = () => {
-      router.push({ name: 'NewDestinationBulk' });
-    };
+    router.push({ name: 'NewDestinationBulk' });
+};
 
 </script>
 

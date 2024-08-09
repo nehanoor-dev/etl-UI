@@ -3,10 +3,12 @@
     <v-row justify="end">
       <v-btn 
         @click="BulkPipeline" 
-        style="font-size: 12px; color: #023c83; font-weight: bolder;" 
+        style="font-size: 14px; color: #023c83; font-weight: bolder; border: 1px solid #023c83; text-transform: capitalize;" 
         elevation="1"
         size="large" 
         rounded="lg"
+        class="ma-5"
+        
       >
         <v-icon left>mdi-plus</v-icon>
         Want to add a source?
@@ -31,12 +33,12 @@
                 prepend-inner-icon="mdi-magnify"
                 variant="outlined" 
                 hide-details 
-                class="custom-search-bar pa-5 ma-10"
+                class="custom-search-bar pa-2"
               ></v-text-field>
             </v-col>
           </v-row>
         </template>
-  
+   
         <template v-slot:item="{ item }">
           <tr @click="selectSource(item.id)" class="hover">
             <td>

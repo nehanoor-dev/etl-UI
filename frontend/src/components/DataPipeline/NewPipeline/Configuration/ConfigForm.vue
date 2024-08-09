@@ -40,7 +40,7 @@
   
         <!-- Finish & Sync Button -->
         <v-row class="mt-10" justify="end">
-          <v-btn @click="syncing" color="primary">Finish & Sync</v-btn>
+          <v-btn @click="syncing" color="#023c83">Finish & Sync</v-btn>
         </v-row>
       </v-col>
     </v-row>

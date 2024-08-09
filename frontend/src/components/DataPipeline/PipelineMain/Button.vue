@@ -19,8 +19,9 @@ const newPipeline = () => {
 /* Custom styling for the button */
 .custom-button {
   background-color: white;  /* White background color */
-  color: #023c83;           /* Dark blue text color */
-  font-size: 13px;          /* Font size of 13px */
+  color: #023c83;   /* Dark blue text color */
+  border: 1px solid #023c83;        
+  font-size: 14px;          /* Font size of 13px */
   text-transform: capitalize; /* Capitalize button text */
 }
 
