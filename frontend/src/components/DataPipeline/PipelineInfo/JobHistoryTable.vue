@@ -74,8 +74,8 @@
   store.dispatch('fetchJobHistory', props.id);
   });
 
-  const jobHistory = computed(() => store.getters.getJobHistory || []);
-  console.log(jobHistory)
+  const jobHistory = computed(() => Array.isArray(store.getters.getJobHistory) ? store.getters.getJobHistory : []);
+  console.log("I am Job: JobHistory", jobHistory)
 
   </script>
   

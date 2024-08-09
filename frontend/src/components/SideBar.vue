@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <div>
+
       <NavigationDrower />
-    </div>
-  </div>
+   
 </template>
 
 <script>
