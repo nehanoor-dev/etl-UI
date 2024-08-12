@@ -15,7 +15,7 @@
 
     <template v-slot:item="{ item }">
       <tr  @click="navigateToDetail(item)" class="hover">
-        <td>
+        <td class="text-truncate" style="max-width: 250px;">
           <v-icon class="mr-3 rounded-icon" :style="{ color: 'white', backgroundColor: '#329C47' }">
             {{ getStatusIcon(item.status) }}
           </v-icon>
@@ -33,7 +33,7 @@
           </v-icon>
           <span class="status-text">{{ item.destination }}</span>
         </td>
-        <td>{{ item.scheduleType + ' ' + item.syncType }}</td>
+        <td class="text-truncate" style="max-width: 200px;" >{{ item.scheduleType + ' ' + item.syncType }}</td>
         <td>{{ item.lastSync }}</td>
         <td>{{ item.status }}</td>
         <td>
