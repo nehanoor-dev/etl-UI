@@ -1,14 +1,9 @@
 <template>
   <v-container fluid>
     <!-- Stepper component for multi-step process -->
-<<<<<<< HEAD
-    <v-stepper editable v-model="step" :items="items" :hide-actions="true" class="custom-stepper">
-      ``
-=======
     <v-stepper 
-     v-model="step" :items="items" :hide-actions="true" class="custom-stepper">
+     v-model="step" editable :items="items" :hide-actions="true" class="custom-stepper">
      
->>>>>>> c051aa22b85d36f6b0987064f958205d5f7b9b98
       <!-- Step 1: Source selection -->
       <template v-slot:item.1>
         <Source @source-selected="handleSourceSelected" />

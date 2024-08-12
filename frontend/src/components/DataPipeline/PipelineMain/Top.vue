@@ -23,17 +23,11 @@
       
     </v-row>
 
-    <!-- Conditionally render the row for pipeline change alerts -->
+    <!-- Conditionally render the alert row -->
     <v-row v-if="pipelineChangeAlert">
+      <!-- Alert for pipeline changes -->
       <v-alert type="info" dismissible @input="pipelineChangeAlert = false" variant="tonal" closable>
         {{ pipelineChangeMessage }}
-      </v-alert>
-    </v-row>
-
-    <!-- Conditionally render the row for error alerts -->
-    <v-row v-if="errorAlert">
-      <v-alert type="error" dismissible @input="errorAlert = false" variant="tonal" closable>
-        {{ errorMessage }}
       </v-alert>
     </v-row>
     
@@ -48,10 +42,7 @@ import { useStore } from 'vuex';
 const store = useStore();
 const pipelineChangeAlert = ref(false);
 const pipelineChangeMessage = ref("");
-const errorAlert = ref(false);
-const errorMessage = ref("");
 
-// Watcher for pipeline changes
 watch(
   () => store.state.pipelines,
   (newVal, oldVal) => {
@@ -65,24 +56,6 @@ watch(
   },
   { deep: true } // Watch deeply to detect changes in nested arrays
 );
-
-// Example function to handle API errors (you can modify this according to your specific API calls)
-const handleError = (error) => {
-  errorAlert.value = true;
-  errorMessage.value = `Error: ${error.message || 'An error occurred during the API request.'}`;
-};
-
-// Example: Fetching pipelines with error handling
-const fetchPipelines = async () => {
-  try {
-    await store.dispatch('fetchPipelines');
-  } catch (error) {
-    handleError(error);
-  }
-};
-
-// You can call `fetchPipelines` or other similar functions that involve API calls and wrap them in a try-catch block to handle errors
-fetchPipelines();
 </script>
 
 <style scoped> 
