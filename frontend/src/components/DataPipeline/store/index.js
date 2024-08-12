@@ -73,7 +73,11 @@ export default createStore({
           }
         });
         console.log("Hello");
+<<<<<<< HEAD
         console.log(response.data); // Log response data for debugging
+=======
+        console.log(response.data.data); // Log response data for debugging
+>>>>>>> c051aa22b85d36f6b0987064f958205d5f7b9b98
         commit('getPipeLines', response.data.data); // Commit response data to state
       } catch (error) {
         console.error('Error fetching pipelines:', error); // Log error details
